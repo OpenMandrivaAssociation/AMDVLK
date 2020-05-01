@@ -1,3 +1,4 @@
+%global amdvlk_version      2020.Q2.2
 
 %global amdvlk_commit       c59322aa302c4378fbca62f0a2f06553d4c01cab
 %global llvm_commit         50077fcc15e5844dacd820dcdb02edb23fc00330
@@ -25,7 +26,7 @@ Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT
 Url:           https://github.com/GPUOpen-Drivers
-Source0:       https://github.com/GPUOpen-Drivers/AMDVLK/archive/v-2020.Q2.2/%{name}-%{version}.tar.gz
+Source0:       https://github.com/GPUOpen-Drivers/AMDVLK/archive/v-2020.Q2.2/%{amdvlk_version}-%{version}.tar.gz
 Source1:       %url/llvm-project/archive/%{llvm_commit}.tar.gz#/llvm-project-%{llvm_short_commit}.tar.gz
 Source2:       %url/llpc/archive/%{llpc_commit}.tar.gz#/llpc-%{llpc_short_commit}.tar.gz
 Source3:       %url/xgl/archive/%{xgl_commit}.tar.gz#/xgl-%{xgl_short_commit}.tar.gz
@@ -75,7 +76,7 @@ following AMD GPUs:
 
 %prep
 %setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7
-ln -s AMDVLK-%{version} AMDVLK
+ln -s AMDVLK-%{amdvlk_version} AMDVLK
 ln -s llvm-project-%{llvm_commit} llvm-project
 ln -s llpc-%{llpc_commit} llpc
 ln -s xgl-%{xgl_commit} xgl

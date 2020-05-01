@@ -48,10 +48,10 @@ BuildRequires: perl
 BuildRequires: curl
 BuildRequires: glibc-devel
 BuildRequires: libstdc++-devel
-BuildRequires: libxcb-devel
-BuildRequires: libX11-devel
-BuildRequires: libxshmfence-devel
-BuildRequires: libXrandr-devel
+BuildRequires: pkgconfig(xcb)
+BuildRequires: pkgconfig(x11)
+BuildRequires: pkgconfig(xshmfence)
+BuildRequires: pkgconfig(xrandr)
 BuildRequires: gtest-devel
 BuildRequires: wayland-devel
 BuildRequires: zlib-devel

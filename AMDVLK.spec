@@ -27,13 +27,13 @@ Summary:       AMD Open Source Driver For Vulkan
 License:       MIT
 Url:           https://github.com/GPUOpen-Drivers
 Source0:       https://github.com/GPUOpen-Drivers/AMDVLK/archive/v-2020.Q2.2/AMDVLK-%{amdvlk_version}.tar.gz
-Source1:       %url/llvm-project/archive/%{llvm_commit}.tar.gz#/llvm-project-%{llvm_short_commit}.tar.gz
-Source2:       %url/llpc/archive/%{llpc_commit}.tar.gz#/llpc-%{llpc_short_commit}.tar.gz
-Source3:       %url/xgl/archive/%{xgl_commit}.tar.gz#/xgl-%{xgl_short_commit}.tar.gz
-Source4:       %url/pal/archive/%{pal_commit}.tar.gz#/pal-%{pal_short_commit}.tar.gz
-Source5:       %url/spvgen/archive/%{spvgen_commit}.tar.gz#/spvgen-%{spvgen_short_commit}.tar.gz
-Source6:       %url/MetroHash/archive/%{metrohash_commit}.tar.gz#/MetroHash-%{metrohash_short_commit}.tar.gz
-Source7:       %url/CWPack/archive/%{cwpack_commit}.tar.gz#/CWPack-%{cwpack_short_commit}.tar.gz
+Source1:       %url/llvm-project/archive/%{llvm_commit}.tar.gz
+Source2:       %url/llpc/archive/%{llpc_commit}.tar.gz
+Source3:       %url/xgl/archive/%{xgl_commit}.tar.gz
+Source4:       %url/pal/archive/%{pal_commit}.tar.gz
+Source5:       %url/spvgen/archive/%{spvgen_commit}.tar.gz
+Source6:       %url/MetroHash/archive/%{metrohash_commit}.tar.gz
+Source7:       %url/CWPack/archive/%{cwpack_commit}.tar.gz
 
 #Requires:      vulkan
 Requires:      vulkan-loader

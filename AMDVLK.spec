@@ -37,7 +37,7 @@ Source7:       %url/CWPack/archive/%{cwpack_commit}.tar.gz/CWPack-%{cwpack_commi
 
 #Requires:      vulkan
 Requires:      vulkan-loader
-Requires:      lib%{_lib}vulkan1
+Requires:      %{_lib}vulkan1
 
 BuildRequires: gcc
 BuildRequires: gcc-c++

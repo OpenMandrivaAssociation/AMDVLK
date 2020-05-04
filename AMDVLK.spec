@@ -21,7 +21,8 @@
 
 Name:          amdvlk-vulkan-driver
 Version:       2.140
-Release:       2
+#Release:       0%{gitrel}%{?dist}
+Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT
 Url:           https://github.com/GPUOpen-Drivers
@@ -38,10 +39,10 @@ Source7:       %url/CWPack/archive/%{cwpack_commit}.tar.gz/CWPack-%{cwpack_commi
 Requires:      vulkan-loader
 Requires:      %{_lib}vulkan1
 
-BuildRequires: llvm
-BuildRequires: clang
+BuildRequires: gcc
+BuildRequires: gcc-c++
 BuildRequires: cmake
-BuildRequires: ninja
+BuildRequires: make
 BuildRequires: python
 BuildRequires: perl
 BuildRequires: curl
@@ -57,21 +58,21 @@ BuildRequires: zlib-devel
 BuildRequires: openssl-devel
 
 %description
-The AMD Open Source Driver for Vulkan is an open-source Vulkan driver
-for Radeon graphics adapters on Linux. It is designed to support the
+The AMD Open Source Driver for VulkanÂŽ is an open-source Vulkan driver
+for Radeonâ˘ graphics adapters on LinuxÂŽ. It is designed to support the
 following AMD GPUs:
 
-    Radeon HD 7000 Series
-    Radeon HD 8000M Series
-    Radeon R5/R7/R9 200/300 Series
-    Radeon RX 400/500 Series
-    Radeon M200/M300/M400 Series
-    Radeon RX Vega Series
-    Radeon RX 5700 Series
-    AMD FirePro Workstation Wx000/Wx100/Wx300 Series
-    Radeon Pro WX x100 Series
-    Radeon Pro 400/500 Series
-    Radeon W5700/W5500 Series
+    Radeonâ˘ HD 7000 Series
+    Radeonâ˘ HD 8000M Series
+    Radeonâ˘ R5/R7/R9 200/300 Series
+    Radeonâ˘ RX 400/500 Series
+    Radeonâ˘ M200/M300/M400 Series
+    Radeonâ˘ RX Vega Series
+    Radeonâ˘ RX 5700 Series
+    AMD FireProâ˘ Workstation Wx000/Wx100/Wx300 Series
+    Radeonâ˘ Pro WX x100 Series
+    Radeonâ˘ Pro 400/500 Series
+    Radeonâ˘ W5700/W5500 Series
 
 %prep
 %setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7
@@ -91,29 +92,30 @@ for i in xgl/icd/CMakeLists.txt llpc/llpc/CMakeLists.txt third_party/metrohash/C
   pal/src/core/imported/addrlib/CMakeLists.txt pal/src/core/imported/vam/CMakeLists.txt \
   pal/shared/gpuopen/cmake/AMD.cmake
 do
-	sed -i "s/-Werror/-Wno-error=deprecated -Wno-error=deprecated-copy -Wno-error=redundant-move/g" $i
+  sed -i "s/-Werror/-Wno-error=deprecated -Wno-error=deprecated-copy -Wno-redundant-move/g" $i
 done
 
 %build
 mkdir -p xgl/build && pushd xgl/build
 
-cmake .. \
-	-DCMAKE_AR=`which llvm-ar` \
-	-DCMAKE_NM=`which llvm-nm` \
-	-DCMAKE_RANLIB=`which llvm-ranlib` \
-	-DCMAKE_VERBOSE_MAKEFILE=ON \
-	-DCMAKE_C_FLAGS_RELEASE=-DNDEBUG \
-	-DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG \
-	-DCMAKE_VERBOSE_MAKEFILE=ON \
-	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-	-DBUILD_SHARED_LIBS=OFF \
-	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-	-DBUILD_WAYLAND_SUPPORT=ON \
-	-DLLVM_ENABLE_WARNINGS=OFF \
-	-G Ninja
+cmake .. -DCMAKE_AR=`which gcc-ar` \
+    -DCMAKE_NM=`which gcc-nm` \
+    -DCMAKE_RANLIB=`which gcc-ranlib` \
+    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG \
+    -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG \
+    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DBUILD_WAYLAND_SUPPORT=ON \
+    -DLLVM_ENABLE_WARNINGS=OFF
 
-%ninja_build
+%make_build
 popd
+
+%clean
+rm -rf %{buildroot}
 
 %install
 mkdir -p %{buildroot}%{_datadir}/vulkan/icd.d

@@ -21,7 +21,7 @@
 
 Name:          amdvlk-vulkan-driver
 Version:       2.140
-Release:       1
+Release:       2
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT
 Url:           https://github.com/GPUOpen-Drivers
@@ -34,9 +34,9 @@ Source5:       %url/spvgen/archive/%{spvgen_commit}.tar.gz/spvgen-%{spvgen_commi
 Source6:       %url/MetroHash/archive/%{metrohash_commit}.tar.gz/MetroHash-%{metrohash_commit}.tar.gz
 Source7:       %url/CWPack/archive/%{cwpack_commit}.tar.gz/CWPack-%{cwpack_commit}.tar.gz
 
-Provides:	amdvlk
-Requires:	vulkan-loader
-Requires:	%{_lib}vulkan1
+#Requires:      vulkan
+Requires:      vulkan-loader
+Requires:      %{_lib}vulkan1
 
 BuildRequires: llvm
 BuildRequires: clang

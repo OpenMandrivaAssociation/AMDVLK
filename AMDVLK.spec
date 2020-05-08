@@ -1,3 +1,5 @@
+%define _disable_lto 1
+
 %global amdvlk_version      v-2020.Q2.2
 
 %global amdvlk_commit       c59322aa302c4378fbca62f0a2f06553d4c01cab

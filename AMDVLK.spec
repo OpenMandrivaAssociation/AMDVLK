@@ -98,6 +98,7 @@ do
 done
 
 %build
+%global ldflags %{ldflags} -fuse-ld=gold
 mkdir -p xgl/build && pushd xgl/build
 
 cmake .. -DCMAKE_AR=`which gcc-ar` \

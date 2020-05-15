@@ -1,10 +1,10 @@
-%global amdvlk_version      v-2020.Q2.2
+%global amdvlk_version      v-2020.Q2.3
 
 %global amdvlk_commit       c59322aa302c4378fbca62f0a2f06553d4c01cab
-%global llvm_commit         50077fcc15e5844dacd820dcdb02edb23fc00330
-%global llpc_commit         9889f54c9a31743b48f3dafcb8ca0c106ed15da4
-%global xgl_commit          1f6143fb951622e06fe7b9396957976fc9feddc7
-%global pal_commit          8b2381a1d05cd2c9c4e7cc2eeda053e76d8c9a4a
+%global llvm_commit         53692d985a53a336e07907c2d4b86bf2deb66908
+%global llpc_commit         61b5d58e8891dc37e473064d429f0496d5254e52
+%global xgl_commit          877b773000248dffa025c42d9c4074d1a07b9e47
+%global pal_commit          a83f67db9f0d2f16bbc698aeefa9c5e9476c993a
 %global spvgen_commit       a223c8636f8306697f6fdc86f742b99fbd8c5dbd
 %global metrohash_commit    2b6fee002db6cc92345b02aeee963ebaaf4c0e2f
 %global cwpack_commit       b601c88aeca7a7b08becb3d32709de383c8ee428
@@ -20,7 +20,7 @@
 %global gitrel              .%{commit_date}.git%{amdvlk_short_commit}
 
 Name:          amdvlk-vulkan-driver
-Version:       2.140
+Version:       2.145
 Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT

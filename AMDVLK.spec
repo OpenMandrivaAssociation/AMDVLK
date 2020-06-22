@@ -57,7 +57,7 @@ BuildRequires: pkgconfig(xshmfence)
 BuildRequires: pkgconfig(xrandr)
 BuildRequires: gtest-devel
 BuildRequires: wayland-devel
-BuildRequires: zlib-devel
+BuildRequires: pkgconfig(zlib)
 BuildRequires: pkgconfig(openssl)
 
 %description
@@ -114,9 +114,9 @@ cmake .. \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DBUILD_WAYLAND_SUPPORT=ON \
 	-DLLVM_ENABLE_WARNINGS=OFF \
-	-G Ninja
+	-G "Unix Makefiles"
 
-%ninja_build
+%make_build
 popd
 
 %install

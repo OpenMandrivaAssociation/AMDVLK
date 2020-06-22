@@ -1,13 +1,17 @@
-%global amdvlk_version      v-2020.Q2.3
+%global amdvlk_version      v-2020.Q2.4
 
-%global amdvlk_commit       c59322aa302c4378fbca62f0a2f06553d4c01cab
-%global llvm_commit         53692d985a53a336e07907c2d4b86bf2deb66908
-%global llpc_commit         61b5d58e8891dc37e473064d429f0496d5254e52
-%global xgl_commit          877b773000248dffa025c42d9c4074d1a07b9e47
-%global pal_commit          a83f67db9f0d2f16bbc698aeefa9c5e9476c993a
-%global spvgen_commit       a223c8636f8306697f6fdc86f742b99fbd8c5dbd
-%global metrohash_commit    2b6fee002db6cc92345b02aeee963ebaaf4c0e2f
-%global cwpack_commit       b601c88aeca7a7b08becb3d32709de383c8ee428
+# Keep in basic sync with:
+# https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
+# https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
+
+%global amdvlk_commit       fc576d9b331e8b86c1881f4b2385af8a093baef0
+%global llvm_commit         c57487b76215ee74b1038039f47b210a28cad65e
+%global llpc_commit         9b4d0a4c3e146ea898d4bb3e86fb4170f75c3daa
+%global xgl_commit          116d28a446eba3a9f8e6f577bab34fc07e090993
+%global pal_commit          13b6271de2f72f62adf098e681c5000f47db2a6c
+%global spvgen_commit       2f679769a8491f423f5cf2f06adfa2870a82935d
+%global metrohash_commit    712f76fee75d69b23a1ea8f6465752c3ccaaf9a2
+%global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
 %global amdvlk_short_commit %(c=%{amdvlk_commit}; echo ${c:0:7})
 %global llvm_short_commit   %(c=%{llvm_commit}; echo ${c:0:7})
 %global llpc_short_commit   %(c=%{llpc_commit}; echo ${c:0:7})
@@ -20,12 +24,12 @@
 %global gitrel              .%{commit_date}.git%{amdvlk_short_commit}
 
 Name:          amdvlk-vulkan-driver
-Version:       2.145
+Version:       2.147
 Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT
 Url:           https://github.com/GPUOpen-Drivers
-Source0:       https://github.com/GPUOpen-Drivers/AMDVLK/archive/v-2020.Q2.2/AMDVLK-%{amdvlk_version}.tar.gz
+Source0:       https://github.com/GPUOpen-Drivers/AMDVLK/archive/v-%{amdvlk_version}/AMDVLK-v-%{amdvlk_version}.tar.gz
 Source1:       %url/llvm-project/archive/%{llvm_commit}.tar.gz/llvm-project-%{llvm_commit}.tar.gz
 Source2:       %url/llpc/archive/%{llpc_commit}.tar.gz/llpc-%{llpc_commit}.tar.gz
 Source3:       %url/xgl/archive/%{xgl_commit}.tar.gz/xgl-%{xgl_commit}.tar.gz

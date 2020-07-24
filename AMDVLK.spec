@@ -80,8 +80,12 @@ following AMD GPUs:
 %prep
 %setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7
 ln -s AMDVLK-%{amdvlk_version} AMDVLK
-ln -s llvm-project-%{llvm_commit} llvm-project
-ln -s llpc-%{llpc_commit} llpc
+# FIXME return to the 2 lines below after the next update.
+# Somehow the commit IDs got messed up in tarball names.
+#ln -s llvm-project-%{llvm_commit} llvm-project
+#ln -s llpc-%{llpc_commit} llpc
+ln -s llvm-project-319fe935a7a607e83d2885c881ae5aeff9b08b22 llvm-project
+ln -s llpc-9acb06852cdf043b0e7b6867800be3cc3bf61383 llpc
 ln -s xgl-%{xgl_commit} xgl
 ln -s pal-%{pal_commit} pal
 ln -s spvgen-%{spvgen_commit} spvgen

@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 %global amdvlk_version      v-2020.Q3.2
 
 # Keep in basic sync with:

@@ -1,15 +1,15 @@
-%global amdvlk_version      v-2020.Q2.4
+%global amdvlk_version      v-2020.Q3.2
 
 # Keep in basic sync with:
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
 %global amdvlk_commit       fc576d9b331e8b86c1881f4b2385af8a093baef0
-%global llvm_commit         c57487b76215ee74b1038039f47b210a28cad65e
-%global llpc_commit         9b4d0a4c3e146ea898d4bb3e86fb4170f75c3daa
-%global xgl_commit          116d28a446eba3a9f8e6f577bab34fc07e090993
-%global pal_commit          13b6271de2f72f62adf098e681c5000f47db2a6c
-%global spvgen_commit       2f679769a8491f423f5cf2f06adfa2870a82935d
+%global llvm_commit         319fe935a7a607e83d2885c881ae5aeff9b
+%global llpc_commit         9acb06852cdf043b0e7b6867800be3cc3bf
+%global xgl_commit          39a4e9c63456ed421b1704179730e95883f26a1b
+%global pal_commit          ea5db60841dab7d067f5010f28a980ef222bdf81
+%global spvgen_commit       34ba176fc2fa8a9997a8a7bd0c731259e2578854
 %global metrohash_commit    712f76fee75d69b23a1ea8f6465752c3ccaaf9a2
 %global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
 %global amdvlk_short_commit %(c=%{amdvlk_commit}; echo ${c:0:7})
@@ -24,7 +24,7 @@
 %global gitrel              .%{commit_date}.git%{amdvlk_short_commit}
 
 Name:          amdvlk-vulkan-driver
-Version:       2.147
+Version:       2.152
 Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT

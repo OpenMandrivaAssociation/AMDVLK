@@ -120,9 +120,9 @@ cmake .. \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DBUILD_WAYLAND_SUPPORT=ON \
 	-DLLVM_ENABLE_WARNINGS=OFF \
-	-G "Unix Makefiles"
+	-G Ninja
 
-%make_build
+%ninja_build
 popd
 
 %install

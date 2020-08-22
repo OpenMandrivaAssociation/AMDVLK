@@ -138,7 +138,7 @@ cmake .. \
 	-DLLVM_ENABLE_WARNINGS=OFF \
 	-G Ninja
 
-%ninja_build
+ninja && ninja spvgen
 popd
 
 %install

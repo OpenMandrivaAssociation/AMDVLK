@@ -49,9 +49,9 @@ Source4:       %url/pal/archive/%{pal_commit}.tar.gz/pal-%{pal_commit}.tar.gz
 Source5:       %url/spvgen/archive/%{spvgen_commit}.tar.gz/spvgen-%{spvgen_commit}.tar.gz
 Source6:       %url/MetroHash/archive/%{metrohash_commit}.tar.gz/MetroHash-%{metrohash_commit}.tar.gz
 Source7:       %url/CWPack/archive/%{cwpack_commit}.tar.gz/CWPack-%{cwpack_commit}.tar.gz
-Source8:       %khronos_url/glslang/archive/%{glslang_commit}.tar.gz#/glslang-%{glslang_short_commit}.tar.gz
-Source9:       %khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}.tar.gz#/SPIRV-Tools-%{spirv_tools_short_commit}.tar.gz
-Source10:      %khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}.tar.gz#/SPIRV-Headers-%{spirv_headers_short_commit}.tar.gz
+Source8:       %khronos_url/glslang/archive/%{glslang_commit}.tar.gz/glslang-%{glslang_commit}.tar.gz
+Source9:       %khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}.tar.gz/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
+Source10:      %khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}.tar.gz/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
 
 Provides:	amdvlk
 Requires:	vulkan-loader

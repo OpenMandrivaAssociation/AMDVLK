@@ -1,23 +1,24 @@
 %global debug_package %{nil}
 
-%global amdvlk_version      v-2020.Q3.3
+%global amdvlk_version      v-2020.Q3.4
 
 # Keep in basic sync with:
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
-%global amdvlk_commit       24551b2702ab7c949596453bc5c4a5b81e9c31e6
-%global llvm_commit         319fe935a7a607e83d2885c881ae5aeff9b
-%global llpc_commit         897de5981ede47587bf4bd0205b860338eb45fa7
-%global xgl_commit          f4a992dd7e556ed5e7e2ffa2c830f1cd79bd4596
-%global pal_commit          477c8e78bc4f8c7f8b4cd312e708935b0e04b1cc
-%global spvgen_commit       8dc855026f2502ab3f45dadaf0bb802a57d6ad60
+%global amdvlk_commit       0fad196737d36523c6c2fe18987e64a5716412b6
+%global llvm_commit         30cb97a1d0efebb4317f9abeec8d90a5a83d4837
+%global llpc_commit         9b5cb15acc8ff789420ed9ed593e35c81303d10c
+%global xgl_commit          598c6832a4983f5b75b38a589fca5be80a2f3bb0
+%global pal_commit          609b2b8ad982f4f2028cf4411cc2e55fc5e6fcf3
+%global spvgen_commit       c054813a9a894e32aaaa04c6717a667c15f60cfd
 %global metrohash_commit    712f76fee75d69b23a1ea8f6465752c3ccaaf9a2
 %global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
 
-%global glslang_commit              b919bc889e1d1032fcbad231b444ff96a541615d
+%global glslang_commit              b99a6a7273181deeb08859c0fdb0c77c7e8a4500
 %global spirv_tools_commit          7a1af5878594cec2992a1bb00565b4c712490239
 %global spirv_headers_commit        11d7637e7a43cd88cfd4e42c99581dcb682936aa
+%global spirv_cross_commit          6575e451f5bffded6e308988362224dd076b0f2b
 
 %global amdvlk_short_commit %(c=%{amdvlk_commit}; echo ${c:0:7})
 %global llvm_short_commit   %(c=%{llvm_commit}; echo ${c:0:7})
@@ -30,13 +31,13 @@
 %global glslang_short_commit        %(c=%{glslang_commit}; echo ${c:0:7})
 %global spirv_tools_short_commit    %(c=%{spirv_tools_commit}; echo ${c:0:7})
 %global spirv_headers_short_commit  %(c=%{spirv_headers_commit}; echo ${c:0:7})
-%global commit_date                 20200806
+%global spirv_cross_short_commit    %(c=%{spirv_cross_commit}; echo ${c:0:7})
+%global commit_date                 20200821
 %global gitrel                      .%{commit_date}.git%{amdvlk_short_commit}
 %global khronos_url                 https://github.com/KhronosGroup/
-%global commit_date         20200416
 
 Name:          amdvlk-vulkan-driver
-Version:       2.153
+Version:       2.155
 Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT
@@ -52,6 +53,7 @@ Source7:       %url/CWPack/archive/%{cwpack_commit}.tar.gz/CWPack-%{cwpack_commi
 Source8:       %khronos_url/glslang/archive/%{glslang_commit}.tar.gz/glslang-%{glslang_commit}.tar.gz
 Source9:       %khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}.tar.gz/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
 Source10:      %khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}.tar.gz/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
+Source11:      %khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}.tar.gz#/SPIRV-Cross-%{spirv_cross_short_commit}.tar.gz
 
 Provides:	amdvlk
 Requires:	vulkan-loader
@@ -93,12 +95,9 @@ following AMD GPUs:
     Radeon W5700/W5500 Series
 
 %prep
-%setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7 -a 8 -a 9 -a 10
+%setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7 -a 8 -a 9 -a 10 -a 11
 ln -s AMDVLK-%{amdvlk_version} AMDVLK
-# FIXME return to the 2 lines below after the next update.
-# Somehow the commit IDs got messed up in tarball names.
-#ln -s llvm-project-%{llvm_commit} llvm-project
-ln -s llvm-project-319fe935a7a607e83d2885c881ae5aeff9b08b22 llvm-project
+ln -s llvm-project-%{llvm_commit} llvm-project
 ln -s llpc-%{llpc_commit} llpc
 ln -s xgl-%{xgl_commit} xgl
 ln -s pal-%{pal_commit} pal
@@ -110,6 +109,7 @@ ln -s ../CWPack-%{cwpack_commit} third_party/cwpack
 ln -s ../../glslang-%{glslang_commit} spvgen/external/glslang
 ln -s ../../SPIRV-Tools-%{spirv_tools_commit} spvgen/external/SPIRV-tools
 ln -s ../../SPIRV-Headers-%{spirv_headers_commit} spvgen/external/SPIRV-tools/external/SPIRV-Headers
+ln -s ../../SPIRV-Cross-%{spirv_cross_commit} spvgen/external/SPIRV-cross
 
 # workaround for AMDVLK#89, AMDVLK#117
 #for i in xgl/icd/CMakeLists.txt llpc/llpc/CMakeLists.txt third_party/metrohash/CMakeLists.txt \

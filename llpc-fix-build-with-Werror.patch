@@ -1,0 +1,16 @@
+diff -up amdvlk-vulkan-driver-2.157/llpc-a3ac9d29e78d11a6cdc1bc1dd0be082e35dbfc0d/llpc/tool/amdllpc.cpp.omv~ amdvlk-vulkan-driver-2.157/llpc-a3ac9d29e78d11a6cdc1bc1dd0be082e35dbfc0d/llpc/tool/amdllpc.cpp
+--- amdvlk-vulkan-driver-2.157/llpc-a3ac9d29e78d11a6cdc1bc1dd0be082e35dbfc0d/llpc/tool/amdllpc.cpp.omv~	2020-09-17 19:54:17.412190368 +0200
++++ amdvlk-vulkan-driver-2.157/llpc-a3ac9d29e78d11a6cdc1bc1dd0be082e35dbfc0d/llpc/tool/amdllpc.cpp	2020-09-17 19:54:42.430166444 +0200
+@@ -888,11 +888,11 @@ static Result checkAutoLayoutCompatibleF
+       shaderInfo->pModuleData = shaderOut->pModuleData;
+       shaderInfo->entryStage = compileInfo->shaderModuleDatas[i].shaderStage;
+       if (checkAutoLayoutCompatible) {
+-        PipelineShaderInfo shaderInfoAuto = *shaderInfo;
+ #if LLPC_CLIENT_INTERFACE_MAJOR_VERSION >= 41
+         doAutoLayoutDesc(compileInfo->shaderModuleDatas[i].shaderStage, compileInfo->shaderModuleDatas[i].spirvBin,
+                          &pipelineInfoAuto, shaderInfo, nodeSets, pushConstSize, true);
+ #else
++        PipelineShaderInfo shaderInfoAuto = *shaderInfo;
+         GraphicsPipelineBuildInfo pipelineInfoAuto = *pipelineInfo;
+         ResourceMappingNodeMap nodeSets;
+         unsigned pushConstSize = 0;

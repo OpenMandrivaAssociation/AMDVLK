@@ -54,7 +54,7 @@ Source8:       %khronos_url/glslang/archive/%{glslang_commit}.tar.gz/glslang-%{g
 Source9:       %khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}.tar.gz/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
 Source10:      %khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}.tar.gz/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
 Source11:      %khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}.tar.gz#/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
-Patch0:		llpc-fix-build-with-Werror.patch
+#Patch0:		llpc-fix-build-with-Werror.patch
 
 Provides:	amdvlk
 Requires:	vulkan-loader

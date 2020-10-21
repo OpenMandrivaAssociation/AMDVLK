@@ -1,6 +1,7 @@
 %global debug_package %{nil}
 
 %global amdvlk_version      v-2020.Q4.1
+%global amdvlk_core_version      2.163
 
 # Keep in basic sync with:
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
@@ -37,7 +38,7 @@
 %global khronos_url                 https://github.com/KhronosGroup/
 
 Name:          amdvlk-vulkan-driver
-Version:       2.163
+Version:       2020.Q4.1
 Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT

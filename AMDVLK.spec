@@ -8,7 +8,7 @@
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
 %global amdvlk_commit       2cd49c011457ec42fa4aa1b62039a839c40fc85f
-%global llvm_commit         11778b213e0e979cbe185901b365f0b2e9a66522
+%global llvm_commit         7ff363c8283c1d41ecbdcdc45c8b724b52312d67
 %global llpc_commit         38dcb76aadf729b67cabe15c2cc07a784020f704
 %global xgl_commit          fc11e79aab63337702d8efc05e5433dec9efdf06
 %global pal_commit          b1e752d402592628f61eb7e1aa2a802a205de798

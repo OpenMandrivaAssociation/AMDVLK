@@ -1,17 +1,17 @@
 %global debug_package %{nil}
 
-%global amdvlk_version      v-2020.Q4.3
-%global amdvlk_core_version      2.166
+%global amdvlk_version      v-2020.Q4.5
+%global amdvlk_core_version      2.167
 
 # Keep in basic sync with:
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
-%global amdvlk_commit       247e0acb44671bd3d5f0d8aab6a184c7a5692b8b
+%global amdvlk_commit       2cd49c011457ec42fa4aa1b62039a839c40fc85f
 %global llvm_commit         11778b213e0e979cbe185901b365f0b2e9a66522
-%global llpc_commit         3b3506161572475b0c163a5d44444fd98922b7d8
-%global xgl_commit          87430a6fa88da11473eed49603def2fa47b51fa0
-%global pal_commit          4ae736bdbc5d5dee59851ac564c5e21d807b44b0
+%global llpc_commit         38dcb76aadf729b67cabe15c2cc07a784020f704
+%global xgl_commit          fc11e79aab63337702d8efc05e5433dec9efdf06
+%global pal_commit          b1e752d402592628f61eb7e1aa2a802a205de798
 %global spvgen_commit       fb798cb760a436e9496dbaab8827e4d183b74744
 %global metrohash_commit    3c566dd9cda44ca7fd97659e0b53ac953f9037d2
 %global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
@@ -33,12 +33,12 @@
 %global spirv_tools_short_commit    %(c=%{spirv_tools_commit}; echo ${c:0:7})
 %global spirv_headers_short_commit  %(c=%{spirv_headers_commit}; echo ${c:0:7})
 %global spirv_cross_short_commit    %(c=%{spirv_cross_commit}; echo ${c:0:7})
-%global commit_date                 20201105
+%global commit_date                 20201119
 %global gitrel                      .%{commit_date}.git%{amdvlk_short_commit}
 %global khronos_url                 https://github.com/KhronosGroup/
 
 Name:          amdvlk-vulkan-driver
-Version:       2020.Q4.3
+Version:       2020.Q4.5
 Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT
@@ -91,6 +91,7 @@ following AMD GPUs:
     Radeon M200/M300/M400 Series
     Radeon RX Vega Series
     Radeon RX 5000 Series
+    Radeon™ RX 6800 Series
     AMD FirePro Workstation Wx000/Wx100/Wx300 Series
     Radeon Pro WX x100 Series
     Radeon Pro 400/500 Series

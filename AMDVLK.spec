@@ -1,17 +1,17 @@
 %global debug_package %{nil}
 
-%global amdvlk_version      v-2020.Q4.5
-%global amdvlk_core_version      2.167
+%global amdvlk_version      v-2020.Q4.6
+%global amdvlk_core_version      2.170
 
 # Keep in basic sync with:
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
-%global amdvlk_commit       2cd49c011457ec42fa4aa1b62039a839c40fc85f
-%global llvm_commit         7ff363c8283c1d41ecbdcdc45c8b724b52312d67
-%global llpc_commit         38dcb76aadf729b67cabe15c2cc07a784020f704
-%global xgl_commit          fc11e79aab63337702d8efc05e5433dec9efdf06
-%global pal_commit          b1e752d402592628f61eb7e1aa2a802a205de798
+%global amdvlk_commit       3940b58b2bea07f91143039d00c660e69ea13f2a
+%global llvm_commit         a0777f49050191c9e215a4880c855395ba805508
+%global llpc_commit         e2d38b0c8042efbc435e51696aba5c1abd256c88
+%global xgl_commit          86f61a31988a626371131a1633547b0d0ebfcfcb
+%global pal_commit          f92844ecbba39be3d2663717ad69c3dffc282211
 %global spvgen_commit       fb798cb760a436e9496dbaab8827e4d183b74744
 %global metrohash_commit    3c566dd9cda44ca7fd97659e0b53ac953f9037d2
 %global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
@@ -33,12 +33,12 @@
 %global spirv_tools_short_commit    %(c=%{spirv_tools_commit}; echo ${c:0:7})
 %global spirv_headers_short_commit  %(c=%{spirv_headers_commit}; echo ${c:0:7})
 %global spirv_cross_short_commit    %(c=%{spirv_cross_commit}; echo ${c:0:7})
-%global commit_date                 20201119
+%global commit_date                 20201214
 %global gitrel                      .%{commit_date}.git%{amdvlk_short_commit}
 %global khronos_url                 https://github.com/KhronosGroup/
 
 Name:          amdvlk-vulkan-driver
-Version:       2020.Q4.5
+Version:       2020.Q4.6
 Release:       1
 Summary:       AMD Open Source Driver For Vulkan
 License:       MIT

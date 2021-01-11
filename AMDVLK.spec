@@ -37,25 +37,25 @@
 %global gitrel                      .%{commit_date}.git%{amdvlk_short_commit}
 %global khronos_url                 https://github.com/KhronosGroup/
 
-Name:          amdvlk-vulkan-driver
-Version:       2021.Q1.1
-Release:       1
-Summary:       AMD Open Source Driver For Vulkan
-License:       MIT
-Url:           https://github.com/GPUOpen-Drivers
-Source0:       https://github.com/GPUOpen-Drivers/AMDVLK/archive/%{amdvlk_version}/AMDVLK-%{amdvlk_version}.tar.gz
-Source1:       %url/llvm-project/archive/%{llvm_commit}/llvm-project-%{llvm_commit}.tar.gz
-Source2:       %url/llpc/archive/%{llpc_commit}/llpc-%{llpc_commit}.tar.gz
-Source3:       %url/xgl/archive/%{xgl_commit}/xgl-%{xgl_commit}.tar.gz
-Source4:       %url/pal/archive/%{pal_commit}/pal-%{pal_commit}.tar.gz
-Source5:       %url/spvgen/archive/%{spvgen_commit}/spvgen-%{spvgen_commit}.tar.gz
-Source6:       %url/MetroHash/archive/%{metrohash_commit}/MetroHash-%{metrohash_commit}.tar.gz
-Source7:       %url/CWPack/archive/%{cwpack_commit}/CWPack-%{cwpack_commit}.tar.gz
-Source8:       %khronos_url/glslang/archive/%{glslang_commit}/glslang-%{glslang_commit}.tar.gz
-Source9:       %khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
-Source10:      %khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
-Source11:      %khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
-#Patch0:		llpc-fix-build-with-Werror.patch
+Name:		amdvlk-vulkan-driver
+Version:	2021.Q1.1
+Release:	1
+Summary:	AMD Open Source Driver For Vulkan
+License:	MIT
+Url:		https://github.com/GPUOpen-Drivers
+Source0:	https://github.com/GPUOpen-Drivers/AMDVLK/archive/%{amdvlk_version}/AMDVLK-%{amdvlk_version}.tar.gz
+Source1:	%url/llvm-project/archive/%{llvm_commit}/llvm-project-%{llvm_commit}.tar.gz
+Source2:	%url/llpc/archive/%{llpc_commit}/llpc-%{llpc_commit}.tar.gz
+Source3:	%url/xgl/archive/%{xgl_commit}/xgl-%{xgl_commit}.tar.gz
+Source4:	%url/pal/archive/%{pal_commit}/pal-%{pal_commit}.tar.gz
+Source5:	%url/spvgen/archive/%{spvgen_commit}/spvgen-%{spvgen_commit}.tar.gz
+Source6:	%url/MetroHash/archive/%{metrohash_commit}/MetroHash-%{metrohash_commit}.tar.gz
+Source7:	%url/CWPack/archive/%{cwpack_commit}/CWPack-%{cwpack_commit}.tar.gz
+Source8:	%khronos_url/glslang/archive/%{glslang_commit}/glslang-%{glslang_commit}.tar.gz
+Source9:	%khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
+Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
+Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
+Patch0:		amdvlk-nonx86.patch
 
 Provides:	amdvlk
 Requires:	vulkan-loader

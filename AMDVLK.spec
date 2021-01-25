@@ -39,7 +39,7 @@
 
 Name:		amdvlk-vulkan-driver
 Version:	2021.Q1.1
-Release:	1
+Release:	2
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
 Url:		https://github.com/GPUOpen-Drivers
@@ -55,7 +55,7 @@ Source8:	%khronos_url/glslang/archive/%{glslang_commit}/glslang-%{glslang_commit
 Source9:	%khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
 Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
 Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
-Patch0:		amdvlk-nonx86.patch
+Patch0:		https://github.com/JakeMerdichAMD/pal/commit/c789d6ef3ea6f90ce2fb0e1b0f8f7a8586b23854.patch
 
 Provides:	amdvlk
 Requires:	vulkan-loader
@@ -123,7 +123,9 @@ ln -s ../../SPIRV-Cross-%{spirv_cross_commit} spvgen/external/SPIRV-cross
 #	sed -i "s/-Werror/-Wno-error=deprecated -Wno-error=deprecated-copy -Wno-error=redundant-move/g" $i
 #done
 
+cd pal
 %autopatch -p1
+cd ..
 
 %build
 mkdir -p xgl/build && pushd xgl/build

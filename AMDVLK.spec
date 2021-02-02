@@ -150,6 +150,7 @@ popd
 
 %install
 mkdir -p %{buildroot}%{_datadir}/vulkan/icd.d
+mkdir -p %{buildroot}%{_datadir}/vulkan/implicit_layer.d
 mkdir -p %{buildroot}%{_libdir}
 
 mkdir -p %{buildroot}%{_sysconfdir}/amd
@@ -157,9 +158,11 @@ echo "MaxNumCmdStreamsPerSubmit,4" > %{buildroot}%{_sysconfdir}/amd/amdPalSettin
 
 %if 0%{?__isa_bits} == 64
     install -m 644 AMDVLK/json/Redhat/amd_icd64.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
+    install -m 644 AMDVLK/json/Redhat/amd_icd64.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
     install -m 755 xgl/build/icd/amdvlk64.so %{buildroot}%{_libdir}
 %else
     install -m 644 AMDVLK/json/Redhat/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
+    install -m 644 AMDVLK/json/Redhat/amd_icd32.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
     install -m 755 xgl/build/icd/amdvlk32.so %{buildroot}%{_libdir}
 %endif
 
@@ -170,5 +173,6 @@ install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
 %dir %{_sysconfdir}/amd
 %config %{_sysconfdir}/amd/amdPalSettings.cfg
 %{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
+%{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
 %{_libdir}/amdvlk*.so
 %{_libdir}/spvgen.so

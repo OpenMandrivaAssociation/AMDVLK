@@ -1,17 +1,17 @@
 %global debug_package %{nil}
 
 %global amdvlk_version      v-%{version}
-%global amdvlk_core_version      2.174
+%global amdvlk_core_version      2.175
 
 # Keep in basic sync with:
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
-%global amdvlk_commit       cfbfe47bfda08e1a9726ca9986fd251bd04e9091
-%global llvm_commit         1551e626ea6b19f81928d2e4eddab657eb82af9b
-%global llpc_commit         86ed348f405120042a2540ec3157e28baf45dc81
-%global xgl_commit          88a4f8c5657824f93790eefe3c9e078806c2a768
-%global pal_commit          57cd977c79e4321c28dcb1a18a4aa23880aa48f4
+%global amdvlk_commit       3e7f94e57f4a6a89ac670418356c6ccce1972651
+%global llvm_commit         97bea7830b74a3f3e0fab48bc79ff993ac0b86da
+%global llpc_commit         ca7003a056d3361031797cf956c3684d9d59edef
+%global xgl_commit          a2c6ddfd90639d9ec4b5a381e0f8dfc46996040c
+%global pal_commit          5262df4eae038624c412904f0a250b66db92194b
 %global spvgen_commit       6b84106b7e107173428647850b4ba93a75b23d84
 %global metrohash_commit    3c566dd9cda44ca7fd97659e0b53ac953f9037d2
 %global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
@@ -33,12 +33,12 @@
 %global spirv_tools_short_commit    %(c=%{spirv_tools_commit}; echo ${c:0:7})
 %global spirv_headers_short_commit  %(c=%{spirv_headers_commit}; echo ${c:0:7})
 %global spirv_cross_short_commit    %(c=%{spirv_cross_commit}; echo ${c:0:7})
-%global commit_date                 20210129
+%global commit_date                 20210208
 %global gitrel                      .%{commit_date}.git%{amdvlk_short_commit}
 %global khronos_url                 https://github.com/KhronosGroup/
 
 Name:		amdvlk-vulkan-driver
-Version:	2021.Q1.2
+Version:	2021.Q1.3
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
@@ -55,7 +55,6 @@ Source8:	%khronos_url/glslang/archive/%{glslang_commit}/glslang-%{glslang_commit
 Source9:	%khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
 Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
 Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
-Patch0:		https://github.com/JakeMerdichAMD/pal/commit/c789d6ef3ea6f90ce2fb0e1b0f8f7a8586b23854.patch
 
 Provides:	amdvlk
 Requires:	vulkan-loader

@@ -55,7 +55,7 @@ Source8:	%khronos_url/glslang/archive/%{glslang_commit}/glslang-%{glslang_commit
 Source9:	%khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
 Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
 Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
-Patch0:		https://github.com/JakeMerdichAMD/pal/commit/c789d6ef3ea6f90ce2fb0e1b0f8f7a8586b23854.patch
+#Patch0:		https://github.com/JakeMerdichAMD/pal/commit/c789d6ef3ea6f90ce2fb0e1b0f8f7a8586b23854.patch
 
 Provides:	amdvlk
 Requires:	vulkan-loader

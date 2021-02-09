@@ -129,13 +129,20 @@ cd ..
 %build
 mkdir -p xgl/build && pushd xgl/build
 
+# Using full optimizations breaks 32-bit platforms'
+# memory allocation limits -- optimize less there
 cmake .. \
 	-DCMAKE_AR=`which llvm-ar` \
 	-DCMAKE_NM=`which llvm-nm` \
 	-DCMAKE_RANLIB=`which llvm-ranlib` \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
+%ifarch %{ix86} %{arm}
+	-DCMAKE_C_FLAGS_RELEASE="-O2 -DNDEBUG" \
+	-DCMAKE_CXX_FLAGS_RELEASE="-O2 -DNDEBUG" \
+%else
 	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -DNDEBUG" \
 	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -DNDEBUG" \
+%endif
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DBUILD_SHARED_LIBS=OFF \

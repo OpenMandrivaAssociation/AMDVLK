@@ -1,4 +1,5 @@
 #global debug_package %{nil}
+%define _empty_manifest_terminate_build 0
 
 %global amdvlk_version      v-%{version}
 %global amdvlk_core_version      2.188

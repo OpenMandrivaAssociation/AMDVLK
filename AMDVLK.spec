@@ -1,4 +1,4 @@
-%global debug_package %{nil}
+#global debug_package %{nil}
 
 %global amdvlk_version      v-%{version}
 %global amdvlk_core_version      2.188

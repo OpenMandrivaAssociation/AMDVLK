@@ -15,12 +15,12 @@
 %global pal_commit          ad699adac6f9f331bbc454050f6b40d1549ce752
 %global spvgen_commit       051b6997c7c34f1167cfd400e3205ed6d4b728ef
 %global metrohash_commit    3c566dd9cda44ca7fd97659e0b53ac953f9037d2
-%global cwpack_commit       2e1b5fb39ebc2ef4cb77005f8267e4f3a6241ba1
+%global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
 
 %global glslang_commit              9431c53c84c14fa9e9cd37678262ebba55c62c87
 %global spirv_tools_commit          1020e394cb1267332d58497150d2b024371a8e41
 %global spirv_headers_commit        85b7e00c7d785962ffe851a177c84353d037dcb6
-%global spirv_cross_commit          9acb9ec31f5a8ef80ea6b994bb77be787b08d3d1
+%global spirv_cross_commit          2e1b5fb39ebc2ef4cb77005f8267e4f3a6241ba1
 
 %global amdvlk_short_commit %(c=%{amdvlk_commit}; echo ${c:0:7})
 %global llvm_short_commit   %(c=%{llvm_commit}; echo ${c:0:7})

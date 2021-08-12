@@ -8,11 +8,11 @@
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
-%global amdvlk_commit       099e036d25f38e332e7f5652683ca77f7429f5bf
-%global llvm_commit         3558c46649a7ef673ff95c58266e59b09626abf0
-%global llpc_commit         64a67716cf85de1a6bf7e1891acb10794d9bb56e
-%global xgl_commit          9210b6802b964cd875628aa67a52fa44a4ec5017
-%global pal_commit          3e6d3ab088f3b7b405250e75de112df37c49398a
+%global amdvlk_commit       463d4697fe2b74fbf6b447d5076d39708edc6a3d
+%global llvm_commit         d3ad9a01687d912773e4fe802ddc85143b7e66d1
+%global llpc_commit         9a3ae083e7400d38790dd9a251731b20aae0d31a
+%global xgl_commit          ec89b84f0b8a83aa2b29ed25cfd741c90f9e2688
+%global pal_commit          f2be9e29a870305e2b2ff1641c0f230725685ef3
 %global spvgen_commit       051b6997c7c34f1167cfd400e3205ed6d4b728ef
 %global metrohash_commit    3c566dd9cda44ca7fd97659e0b53ac953f9037d2
 %global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
@@ -39,7 +39,7 @@
 %global khronos_url                 https://github.com/KhronosGroup/
 
 Name:		amdvlk-vulkan-driver
-Version:	2021.Q3.2
+Version:	2021.Q3.4
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT

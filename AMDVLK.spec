@@ -9,11 +9,11 @@
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
 %global amdvlk_commit       463d4697fe2b74fbf6b447d5076d39708edc6a3d
-%global llvm_commit         d3ad9a01687d912773e4fe802ddc85143b7e66d1
-%global llpc_commit         9a3ae083e7400d38790dd9a251731b20aae0d31a
-%global xgl_commit          ec89b84f0b8a83aa2b29ed25cfd741c90f9e2688
-%global pal_commit          f2be9e29a870305e2b2ff1641c0f230725685ef3
-%global spvgen_commit       051b6997c7c34f1167cfd400e3205ed6d4b728ef
+%global llvm_commit         e32a5e65b5a2e821f3442908399ba097b610b495
+%global llpc_commit         70d4e4fb1d92a1448fb5b4b9d354fd36365524be
+%global xgl_commit          b534a38d7715c3d827ee23cbff076ded15305c28
+%global pal_commit          cd4f8b28b5d923e8d65a1ef1d3dee5137a89d6bd
+%global spvgen_commit       8705e87a8b4aaed55a89f79ed423612ca310bfdd
 %global metrohash_commit    3c566dd9cda44ca7fd97659e0b53ac953f9037d2
 %global cwpack_commit       7387247eb9889ddcabbc1053b9c2052e253b088e
 
@@ -39,7 +39,7 @@
 %global khronos_url                 https://github.com/KhronosGroup/
 
 Name:		amdvlk-vulkan-driver
-Version:	2021.Q3.4
+Version:	2021.Q3.5
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT

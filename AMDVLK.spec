@@ -8,19 +8,19 @@
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
-%global amdvlk_commit       ab3f291f48bf5867b8d614f9fbd501b51bb2e769
-%global llvm_commit         3ced1fbbcda4583e7070f0089829467c53ece98b
-%global llpc_commit         c937b09ac21acb5bc50d992ee4e0fc3a2a39377c
-%global xgl_commit          477361f6a225d7dc1bfc2fe7d6431af4caaf39f5
-%global pal_commit          d5826cb5d1a353156ece858dbfecab1ec66ebaa5
-%global spvgen_commit       e0855d9a0370652ca14718758d71057c24403dd0
+%global amdvlk_commit       8d70d12b7b3887622dddca01ae2d8f0312876d98
+%global llvm_commit         63581e1504f3854df7d1ea7aab6af935da1b515d
+%global llpc_commit         80b124752f5f689b21d46a3fd459b2df659de187
+%global xgl_commit          da1a583a51c69c115f9144b68ec2bdf5b6519056
+%global pal_commit          61409c1cea19a2ca5ad00461b1e75b3ab46c4389
+%global spvgen_commit       0aa19873514a8272dfdc5cb8861859a52f5de503
 %global metrohash_commit    3c566dd9cda44ca7fd97659e0b53ac953f9037d2
 %global cwpack_commit       39f8940199e60c44d4211cf8165dfd12876316fa
 
-%global glslang_commit              9431c53c84c14fa9e9cd37678262ebba55c62c87
-%global spirv_tools_commit          1020e394cb1267332d58497150d2b024371a8e41
-%global spirv_headers_commit        85b7e00c7d785962ffe851a177c84353d037dcb6
-%global spirv_cross_commit          2e1b5fb39ebc2ef4cb77005f8267e4f3a6241ba1
+%global glslang_commit              b9ba4c5743997abbc0df858f2458a86d62af6a25
+%global spirv_tools_commit          4578db3c419a9300485155fd8b81f6b1d822b5fb
+%global spirv_headers_commit        19e8350415ed9516c8afffa19ae2c58559495a67
+%global spirv_cross_commit          e4243b898ca5e1e19e48725a991ada1e5744691c
 
 %global amdvlk_short_commit %(c=%{amdvlk_commit}; echo ${c:0:7})
 %global llvm_short_commit   %(c=%{llvm_commit}; echo ${c:0:7})
@@ -39,7 +39,7 @@
 %global khronos_url                 https://github.com/KhronosGroup/
 
 Name:		amdvlk-vulkan-driver
-Version:	2021.Q4.1
+Version:	2021.Q4.2
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT

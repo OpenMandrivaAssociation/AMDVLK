@@ -143,7 +143,7 @@ export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DBUILD_SHARED_LIBS=OFF \
 	-DCMAKE_BUILD_TYPE=Release \
-	-DBUILD_WAYLAND_SUPPORT=ON \
+	-DBUILD_WAYLAND_SUPPORT=OFF \
 	-DLLVM_ENABLE_WARNINGS=OFF \
 	-G Ninja
 %ninja_build && %ninja_build spvgen

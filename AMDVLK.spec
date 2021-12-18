@@ -1,42 +1,48 @@
 #global debug_package %{nil}
 %define _empty_manifest_terminate_build 0
 
-%global amdvlk_version      v-%{version}
-%global amdvlk_core_version      2.192
+%global amdvlk_version	  v-%{version}
+%global amdvlk_core_version	  2.192
 
 # Keep in basic sync with:
 # https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
-%global amdvlk_commit       8d70d12b7b3887622dddca01ae2d8f0312876d98
-%global llvm_commit         63581e1504f3854df7d1ea7aab6af935da1b515d
-%global llpc_commit         80b124752f5f689b21d46a3fd459b2df659de187
-%global xgl_commit          da1a583a51c69c115f9144b68ec2bdf5b6519056
-%global pal_commit          61409c1cea19a2ca5ad00461b1e75b3ab46c4389
-%global spvgen_commit       0aa19873514a8272dfdc5cb8861859a52f5de503
-%global metrohash_commit    3c566dd9cda44ca7fd97659e0b53ac953f9037d2
-%global cwpack_commit       39f8940199e60c44d4211cf8165dfd12876316fa
+%global amdvlk_commit		8d70d12b7b3887622dddca01ae2d8f0312876d98
+%global llvm_commit		63581e1504f3854df7d1ea7aab6af935da1b515d
+%global llpc_commit		80b124752f5f689b21d46a3fd459b2df659de187
+%global xgl_commit		da1a583a51c69c115f9144b68ec2bdf5b6519056
+%global pal_commit		61409c1cea19a2ca5ad00461b1e75b3ab46c4389
+%global spvgen_commit		0aa19873514a8272dfdc5cb8861859a52f5de503
+%global metrohash_commit	3c566dd9cda44ca7fd97659e0b53ac953f9037d2
+%global cwpack_commit		39f8940199e60c44d4211cf8165dfd12876316fa
 
-%global glslang_commit              b9ba4c5743997abbc0df858f2458a86d62af6a25
-%global spirv_tools_commit          4578db3c419a9300485155fd8b81f6b1d822b5fb
-%global spirv_headers_commit        19e8350415ed9516c8afffa19ae2c58559495a67
-%global spirv_cross_commit          e4243b898ca5e1e19e48725a991ada1e5744691c
+%global glslang_commit		b9ba4c5743997abbc0df858f2458a86d62af6a25
+%global spirv_tools_commit	4578db3c419a9300485155fd8b81f6b1d822b5fb
+%global spirv_headers_commit	19e8350415ed9516c8afffa19ae2c58559495a67
+%global spirv_cross_commit	e4243b898ca5e1e19e48725a991ada1e5744691c
 
-%global amdvlk_short_commit %(c=%{amdvlk_commit}; echo ${c:0:7})
-%global llvm_short_commit   %(c=%{llvm_commit}; echo ${c:0:7})
-%global llpc_short_commit   %(c=%{llpc_commit}; echo ${c:0:7})
-%global xgl_short_commit    %(c=%{xgl_commit}; echo ${c:0:7})
-%global pal_short_commit    %(c=%{pal_commit}; echo ${c:0:7})
-%global spvgen_short_commit %(c=%{spvgen_commit}; echo ${c:0:7})
-%global metrohash_short_commit %(c=%{metrohash_commit}; echo ${c:0:7})
-%global cwpack_short_commit %(c=%{cwpack_commit}; echo ${c:0:7})
-%global glslang_short_commit        %(c=%{glslang_commit}; echo ${c:0:7})
-%global spirv_tools_short_commit    %(c=%{spirv_tools_commit}; echo ${c:0:7})
-%global spirv_headers_short_commit  %(c=%{spirv_headers_commit}; echo ${c:0:7})
-%global spirv_cross_short_commit    %(c=%{spirv_cross_commit}; echo ${c:0:7})
-%global commit_date                 20210722
-%global gitrel                      .%{commit_date}.git%{amdvlk_short_commit}
-%global khronos_url                 https://github.com/KhronosGroup/
+%global amdvlk_short_commit	%(c=%{amdvlk_commit}; echo ${c:0:7})
+%global llvm_short_commit	%(c=%{llvm_commit}; echo ${c:0:7})
+%global llpc_short_commit	%(c=%{llpc_commit}; echo ${c:0:7})
+%global xgl_short_commit	%(c=%{xgl_commit}; echo ${c:0:7})
+%global pal_short_commit	%(c=%{pal_commit}; echo ${c:0:7})
+%global spvgen_short_commit	%(c=%{spvgen_commit}; echo ${c:0:7})
+%global metrohash_short_commit	%(c=%{metrohash_commit}; echo ${c:0:7})
+%global cwpack_short_commit	%(c=%{cwpack_commit}; echo ${c:0:7})
+%global glslang_short_commit	%(c=%{glslang_commit}; echo ${c:0:7})
+%global spirv_tools_short_commit	%(c=%{spirv_tools_commit}; echo ${c:0:7})
+%global spirv_headers_short_commit	%(c=%{spirv_headers_commit}; echo ${c:0:7})
+%global spirv_cross_short_commit	%(c=%{spirv_cross_commit}; echo ${c:0:7})
+%global commit_date		20210722
+%global gitrel			.%{commit_date}.git%{amdvlk_short_commit}
+%global khronos_url		https://github.com/KhronosGroup/
+
+%ifarch %{x86_64}
+%bcond_without compat32
+%else
+%bcond_with compat32
+%endif
 
 Name:		amdvlk-vulkan-driver
 Version:	2021.Q4.2
@@ -84,12 +90,12 @@ The AMD Open Source Driver for Vulkan is an open-source Vulkan driver
 for Radeon graphics adapters on Linux. It is designed to support the
 following AMD GPUs:
 
-    Radeon RX 400/500 Series
-    Radeon RX Vega Series
-    Radeon RX 5000 Series
-    Radeon RX 6000 Series
-    Radeon Pro WX 9100, x200 Series
-    Radeon Pro W5700/W5500 Series
+	Radeon RX 400/500 Series
+	Radeon RX Vega Series
+	Radeon RX 5000 Series
+	Radeon RX 6000 Series
+	Radeon Pro WX 9100, x200 Series
+	Radeon Pro W5700/W5500 Series
 
 %prep
 %setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7 -a 8 -a 9 -a 10 -a 11
@@ -122,6 +128,30 @@ cd pal
 cd ..
 
 %build
+%if %{with compat32}
+export CMAKE_BUILD_DIR32=xgl/build32
+export CFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
+export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
+%cmake32 \
+	-DCMAKE_AR=`which llvm-ar` \
+	-DCMAKE_NM=`which llvm-nm` \
+	-DCMAKE_RANLIB=`which llvm-ranlib` \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
+	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DBUILD_SHARED_LIBS=OFF \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DBUILD_WAYLAND_SUPPORT=ON \
+	-DLLVM_ENABLE_WARNINGS=OFF \
+	-G Ninja
+%ninja_build && %ninja_build spvgen
+cd -
+unset CFLAGS
+unset CXXFLAGS
+%endif
+
 mkdir -p xgl/build && pushd xgl/build
 
 # Using full optimizations breaks 32-bit platforms'
@@ -158,18 +188,24 @@ mkdir -p %{buildroot}%{_sysconfdir}/amd
 echo "MaxNumCmdStreamsPerSubmit,4" > %{buildroot}%{_sysconfdir}/amd/amdPalSettings.cfg
 
 %if 0%{?__isa_bits} == 64
-#    install -m 644 AMDVLK/json/Redhat/amd_icd64.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
-#    install -m 644 AMDVLK/json/Redhat/amd_icd64.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
-    install -m 644 xgl/build/icd/amd_icd64.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
-    install -m 755 xgl/build/icd/amdvlk64.so %{buildroot}%{_libdir}
+#	install -m 644 AMDVLK/json/Redhat/amd_icd64.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
+#	install -m 644 AMDVLK/json/Redhat/amd_icd64.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
+	install -m 644 xgl/build/icd/amd_icd64.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
+	install -m 755 xgl/build/icd/amdvlk64.so %{buildroot}%{_libdir}
 %else
-#    install -m 644 AMDVLK/json/Redhat/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
-#    install -m 644 AMDVLK/json/Redhat/amd_icd32.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
-    install -m 644 xgl/build/icd/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
-    install -m 755 xgl/build/icd/amdvlk32.so %{buildroot}%{_libdir}
+#	install -m 644 AMDVLK/json/Redhat/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
+#	install -m 644 AMDVLK/json/Redhat/amd_icd32.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
+	install -m 644 xgl/build/icd/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
+	install -m 755 xgl/build/icd/amdvlk32.so %{buildroot}%{_libdir}
 %endif
-
 install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
+
+%if %{with compat32}
+	mkdir -p %{buildroot}%{_prefix}/lib
+	install -m 644 xgl/build32/icd/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.i686.json
+	install -m 755 xgl/build32/icd/amdvlk32.so %{buildroot}%{_prefix}/lib/
+	install -m 755 xgl/build32/spvgen/spvgen.so %{buildroot}%{_prefix}/lib/
+%endif
 
 %files
 %doc AMDVLK/LICENSE.txt AMDVLK/README.md AMDVLK/topLevelArch.png
@@ -179,3 +215,17 @@ install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
 #{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
 %{_libdir}/amdvlk*.so
 %{_libdir}/spvgen.so
+
+%if %{with compat32}
+%package 32
+Summary:	32-bit version of the AMD Vulkan drivers
+Group:		System/Libraries
+
+%description 32
+32-bit version of the AMD Vulkan drivers
+
+%files 32
+%{_datadir}/vulkan/icd.d/amd_icd.i686.json
+%{_prefix}/lib/amdvlk*.so
+%{_prefix}/lib/svpgen.so
+%endif

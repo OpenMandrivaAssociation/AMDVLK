@@ -84,6 +84,15 @@ BuildRequires: gtest-devel
 BuildRequires: wayland-devel
 BuildRequires: pkgconfig(zlib)
 BuildRequires: pkgconfig(openssl)
+%if %{with compat32}
+BuildRequires: devel(libxcb)
+BuildRequires: devel(libX11)
+BuildRequires: devel(libxshmfence)
+BuildRequires: devel(libXrandr)
+BuildRequires: devel(libwayland-client)
+BuildRequires: devel(libz)
+BuildRequires: devel(libssl)
+%endif
 
 %description
 The AMD Open Source Driver for Vulkan is an open-source Vulkan driver
@@ -143,7 +152,7 @@ export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DBUILD_SHARED_LIBS=OFF \
 	-DCMAKE_BUILD_TYPE=Release \
-	-DBUILD_WAYLAND_SUPPORT=OFF \
+	-DBUILD_WAYLAND_SUPPORT=ON \
 	-DLLVM_ENABLE_WARNINGS=OFF \
 	-G Ninja
 %ninja_build && %ninja_build spvgen

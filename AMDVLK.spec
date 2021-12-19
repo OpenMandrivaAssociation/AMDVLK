@@ -1,6 +1,9 @@
 #global debug_package %{nil}
 %define _empty_manifest_terminate_build 0
 
+# Workaround for the build process eating way too much RAM
+%define _disable_lto 1
+
 %global amdvlk_version	  v-%{version}
 %global amdvlk_core_version	  2.192
 
@@ -174,8 +177,8 @@ cmake .. \
 	-DCMAKE_C_FLAGS_RELEASE="-O2 -DNDEBUG" \
 	-DCMAKE_CXX_FLAGS_RELEASE="-O2 -DNDEBUG" \
 %else
-	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -flto=thin -O3 -DNDEBUG" \
-	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -flto=thin -O3 -DNDEBUG" \
+	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -DNDEBUG" \
+	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -DNDEBUG" \
 %endif
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
@@ -236,5 +239,5 @@ Group:		System/Libraries
 %files 32
 %{_datadir}/vulkan/icd.d/amd_icd.i686.json
 %{_prefix}/lib/amdvlk*.so
-%{_prefix}/lib/svpgen.so
+%{_prefix}/lib/spvgen.so
 %endif

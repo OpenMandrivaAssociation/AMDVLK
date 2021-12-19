@@ -174,8 +174,8 @@ cmake .. \
 	-DCMAKE_C_FLAGS_RELEASE="-O2 -DNDEBUG" \
 	-DCMAKE_CXX_FLAGS_RELEASE="-O2 -DNDEBUG" \
 %else
-	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -DNDEBUG" \
-	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -DNDEBUG" \
+	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -flto=thin -O3 -DNDEBUG" \
+	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -flto=thin -O3 -DNDEBUG" \
 %endif
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \

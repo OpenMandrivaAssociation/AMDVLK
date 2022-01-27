@@ -142,15 +142,15 @@ cd ..
 %build
 %if %{with compat32}
 export CMAKE_BUILD_DIR32=xgl/build32
-export CFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
-export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
+export CFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG -fuse-ld=bfd"
+export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG -fuse-ld=bfd"
 %cmake32 \
 	-DCMAKE_AR=`which llvm-ar` \
 	-DCMAKE_NM=`which llvm-nm` \
 	-DCMAKE_RANLIB=`which llvm-ranlib` \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
-	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
-	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
+	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG -fuse-ld=bfd" \
+	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG -fuse-ld=bfd" \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DBUILD_SHARED_LIBS=OFF \

@@ -79,6 +79,7 @@ BuildRequires: perl
 BuildRequires: curl
 BuildRequires: glibc-devel
 BuildRequires: libstdc++-devel
+BuildRequires: pkgconfig(xau)
 BuildRequires: pkgconfig(xcb)
 BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xshmfence)
@@ -87,7 +88,12 @@ BuildRequires: gtest-devel
 BuildRequires: wayland-devel
 BuildRequires: pkgconfig(zlib)
 BuildRequires: pkgconfig(openssl)
+BuildRequires: pkgconfig(libdrm)
 %if %{with compat32}
+BuildRequires: devel(libXau)
+BuildRequires: devel(libXdmcp)
+BuildRequires: devel(libXext)
+BuildRequires: devel(libXrender)
 BuildRequires: devel(libxcb)
 BuildRequires: devel(libX11)
 BuildRequires: devel(libxshmfence)
@@ -95,6 +101,8 @@ BuildRequires: devel(libXrandr)
 BuildRequires: devel(libwayland-client)
 BuildRequires: devel(libz)
 BuildRequires: devel(libssl)
+BuildRequires: devel(libffi)
+BuildRequires: devel(libdrm)
 %endif
 
 %description
@@ -141,16 +149,21 @@ cd ..
 
 %build
 %if %{with compat32}
+# Make sure we don't get --color-diagnostics on ld.bfd -- the checks
+# seem to use ld.lld...
+# The check seems to be broken, whatever flag is set is passed. So let's
+# set it to something we actually want.
+sed -i -e 's/--color-diagnostics/-O2/g' ./llvm-project-*/llvm/cmake/modules/HandleLLVMOptions.cmake
 export CMAKE_BUILD_DIR32=xgl/build32
-export CFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG -fuse-ld=bfd"
-export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG -fuse-ld=bfd"
+export CFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
+export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
 %cmake32 \
 	-DCMAKE_AR=`which llvm-ar` \
 	-DCMAKE_NM=`which llvm-nm` \
 	-DCMAKE_RANLIB=`which llvm-ranlib` \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
-	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG -fuse-ld=bfd" \
-	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG -fuse-ld=bfd" \
+	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
+	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DBUILD_SHARED_LIBS=OFF \

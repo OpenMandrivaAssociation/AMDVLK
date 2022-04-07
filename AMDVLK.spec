@@ -16,7 +16,7 @@
 %global llpc_commit		c0dbc976ccaed1873272f99e1e254b2a1114a50b
 %global xgl_commit		25569e8bf7ade7cd304697c18f49a8ff893b07fa
 %global pal_commit		1ff58cafbae03aa571b0dde83aefd0d1fdfb8a9b
-%global spvgen_commit		87983dba34c24ce5ac4f9c17d9ddea0890758e33
+%global spvgen_commit		95304f054cb80a35fb46d5de9c0f9be6e1c9f081
 %global metrohash_commit	3c566dd9cda44ca7fd97659e0b53ac953f9037d2
 %global cwpack_commit		39f8940199e60c44d4211cf8165dfd12876316fa
 

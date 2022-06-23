@@ -90,6 +90,7 @@ BuildRequires: pkgconfig(zlib)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(libdrm)
 %if %{with compat32}
+BuildRequires: libc6
 BuildRequires: devel(libXau)
 BuildRequires: devel(libXdmcp)
 BuildRequires: devel(libXext)

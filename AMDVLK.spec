@@ -66,6 +66,8 @@ Source9:	%khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}/SPIRV-Tools-%{sp
 Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
 Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
 
+Patch0:		amdvlk-fix-missing-include.patch
+
 Provides:	amdvlk
 Requires:	vulkan-loader
 Requires:	%{_lib}vulkan1
@@ -144,9 +146,7 @@ ln -s ../../SPIRV-Cross-%{spirv_cross_commit} spvgen/external/SPIRV-cross
 #	sed -i "s/-Werror/-Wno-error=deprecated -Wno-error=deprecated-copy -Wno-error=redundant-move/g" $i
 #done
 
-cd pal
 %autopatch -p1
-cd ..
 
 %build
 %if %{with compat32}

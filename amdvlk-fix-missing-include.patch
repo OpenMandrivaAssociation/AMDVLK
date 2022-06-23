@@ -1,0 +1,11 @@
+diff -up amdvlk-vulkan-driver-2022.Q2.3/pal-a40241a1e6f5970a9313efe686a79c0a429ea5eb/src/util/lnx/lnxUuid.cpp.omv~ amdvlk-vulkan-driver-2022.Q2.3/pal-a40241a1e6f5970a9313efe686a79c0a429ea5eb/src/util/lnx/lnxUuid.cpp
+--- amdvlk-vulkan-driver-2022.Q2.3/pal-a40241a1e6f5970a9313efe686a79c0a429ea5eb/src/util/lnx/lnxUuid.cpp.omv~	2022-06-23 14:28:45.364107066 +0200
++++ amdvlk-vulkan-driver-2022.Q2.3/pal-a40241a1e6f5970a9313efe686a79c0a429ea5eb/src/util/lnx/lnxUuid.cpp	2022-06-23 14:28:52.298141116 +0200
+@@ -30,6 +30,7 @@
+ 
+ #include <random>
+ #include <unistd.h>
++#include <time.h>
+ 
+ namespace Util
+ {

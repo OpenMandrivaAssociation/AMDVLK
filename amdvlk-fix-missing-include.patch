@@ -1,6 +1,6 @@
-diff -up amdvlk-vulkan-driver-2022.Q3.1/pal-8a99ffaa533ee561af7075d413f6052ea37a1a04/src/util/lnx/lnxUuid.cpp.omv~ amdvlk-vulkan-driver-2022.Q3.1/pal-pal-8a99ffaa533ee561af7075d413f6052ea37a1a04/src/util/lnx/lnxUuid.cpp
---- amdvlk-vulkan-driver-2022.Q3.1/pal-pal-8a99ffaa533ee561af7075d413f6052ea37a1a04/src/util/lnx/lnxUuid.cpp.omv~	2022-06-23 14:28:45.364107066 +0200
-+++ amdvlk-vulkan-driver-2022.Q3.1/pal-pal-8a99ffaa533ee561af7075d413f6052ea37a1a04/src/util/lnx/lnxUuid.cpp	2022-06-23 14:28:52.298141116 +0200
+diff -up amdvlk-vulkan-driver-2022.Q3.1/pal-8a99ffaa533ee561af7075d413f6052ea37a1a04/src/util/lnx/lnxUuid.cpp.omv~ amdvlk-vulkan-driver-2022.Q3.1/pal-8a99ffaa533ee561af7075d413f6052ea37a1a04/src/util/lnx/lnxUuid.cpp
+--- amdvlk-vulkan-driver-2022.Q3.1/pal-8a99ffaa533ee561af7075d413f6052ea37a1a04/src/util/lnx/lnxUuid.cpp.omv~	2022-06-23 14:28:45.364107066 +0200
++++ amdvlk-vulkan-driver-2022.Q3.1/pal-8a99ffaa533ee561af7075d413f6052ea37a1a04/src/util/lnx/lnxUuid.cpp	2022-06-23 14:28:52.298141116 +0200
 @@ -30,6 +30,7 @@
  
  #include <random>

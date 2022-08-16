@@ -172,7 +172,7 @@ export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
 	-DBUILD_WAYLAND_SUPPORT=ON \
 	-DLLVM_ENABLE_WARNINGS=OFF \
 	-G Ninja
-%ninja_build && %ninja_build spvgen
+%ninja_build
 cd -
 unset CFLAGS
 unset CXXFLAGS
@@ -202,7 +202,7 @@ cmake .. \
 	-DLLVM_ENABLE_WARNINGS=OFF \
 	-G Ninja
 
-%ninja && ninja spvgen
+%ninja
 popd
 
 %install
@@ -224,7 +224,7 @@ echo "MaxNumCmdStreamsPerSubmit,4" > %{buildroot}%{_sysconfdir}/amd/amdPalSettin
 	install -m 644 xgl/build/icd/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
 	install -m 755 xgl/build/icd/amdvlk32.so %{buildroot}%{_libdir}
 %endif
-install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
+#install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
 
 %if %{with compat32}
 	mkdir -p %{buildroot}%{_prefix}/lib
@@ -240,7 +240,7 @@ install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
 %{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
 #{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
 %{_libdir}/amdvlk*.so
-%{_libdir}/spvgen.so
+#{_libdir}/spvgen.so
 
 %if %{with compat32}
 %package 32
@@ -253,5 +253,5 @@ Group:		System/Libraries
 %files 32
 %{_datadir}/vulkan/icd.d/amd_icd.i686.json
 %{_prefix}/lib/amdvlk*.so
-%{_prefix}/lib/spvgen.so
+#{_prefix}/lib/spvgen.so
 %endif

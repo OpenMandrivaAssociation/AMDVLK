@@ -12,11 +12,11 @@
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
 %global amdvlk_commit		cab8f8631d99240a6503872083bd544fe85f628f
-%global llvm_commit		ff4dc0eccd74424c9352f8d8ee80f3b4913df35f
-%global llpc_commit		61aabddf65ae7395ec934bce96fa4b7dd0e8880c
-%global xgl_commit		a9a73115ee5c2d8c717ea39fc31a9d2ae1de8044
-%global pal_commit		a40241a1e6f5970a9313efe686a79c0a429ea5eb
-%global spvgen_commit		eaa8c1dafbdb8db174b30919fcba424579a8c991
+%global llvm_commit		fe6c373e23704edb06c404c2610f6fb9a90f889d
+%global llpc_commit		44dd0e37f17788d7ab94e49e8dcf49783fbf954d
+%global xgl_commit		5efb8f835e0c2fae7be3ddcbe386ea52b6b9c1c9
+%global pal_commit		f37604d37883165c21b6e929a87936d4a39392ba
+%global spvgen_commit		3b61d0ce836d3832e19931be198f6f619206de4c
 %global metrohash_commit	18893fb28601bb9af1154cd1a671a121fff6d8d3
 %global cwpack_commit		4f8cf0584442a91d829d269158567d7ed926f026
 
@@ -48,7 +48,7 @@
 %endif
 
 Name:		amdvlk-vulkan-driver
-Version:	2022.Q2.3
+Version:	2022.Q3.2
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
@@ -172,7 +172,7 @@ export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
 	-DBUILD_WAYLAND_SUPPORT=ON \
 	-DLLVM_ENABLE_WARNINGS=OFF \
 	-G Ninja
-%ninja_build && %ninja_build spvgen
+%ninja_build
 cd -
 unset CFLAGS
 unset CXXFLAGS
@@ -202,7 +202,7 @@ cmake .. \
 	-DLLVM_ENABLE_WARNINGS=OFF \
 	-G Ninja
 
-%ninja && ninja spvgen
+%ninja
 popd
 
 %install
@@ -224,13 +224,13 @@ echo "MaxNumCmdStreamsPerSubmit,4" > %{buildroot}%{_sysconfdir}/amd/amdPalSettin
 	install -m 644 xgl/build/icd/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
 	install -m 755 xgl/build/icd/amdvlk32.so %{buildroot}%{_libdir}
 %endif
-install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
+#install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
 
 %if %{with compat32}
 	mkdir -p %{buildroot}%{_prefix}/lib
 	install -m 644 xgl/build32/icd/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.i686.json
 	install -m 755 xgl/build32/icd/amdvlk32.so %{buildroot}%{_prefix}/lib/
-	install -m 755 xgl/build32/spvgen/spvgen.so %{buildroot}%{_prefix}/lib/
+#	install -m 755 xgl/build32/spvgen/spvgen.so %{buildroot}%{_prefix}/lib/
 %endif
 
 %files
@@ -240,7 +240,7 @@ install -m 755 xgl/build/spvgen/spvgen.so %{buildroot}%{_libdir}
 %{_datadir}/vulkan/icd.d/amd_icd.%{_arch}.json
 #{_datadir}/vulkan/implicit_layer.d/amd_icd.%{_arch}.json
 %{_libdir}/amdvlk*.so
-%{_libdir}/spvgen.so
+#{_libdir}/spvgen.so
 
 %if %{with compat32}
 %package 32
@@ -253,5 +253,5 @@ Group:		System/Libraries
 %files 32
 %{_datadir}/vulkan/icd.d/amd_icd.i686.json
 %{_prefix}/lib/amdvlk*.so
-%{_prefix}/lib/spvgen.so
+#{_prefix}/lib/spvgen.so
 %endif

@@ -230,7 +230,7 @@ echo "MaxNumCmdStreamsPerSubmit,4" > %{buildroot}%{_sysconfdir}/amd/amdPalSettin
 	mkdir -p %{buildroot}%{_prefix}/lib
 	install -m 644 xgl/build32/icd/amd_icd32.json %{buildroot}%{_datadir}/vulkan/icd.d/amd_icd.i686.json
 	install -m 755 xgl/build32/icd/amdvlk32.so %{buildroot}%{_prefix}/lib/
-	install -m 755 xgl/build32/spvgen/spvgen.so %{buildroot}%{_prefix}/lib/
+#	install -m 755 xgl/build32/spvgen/spvgen.so %{buildroot}%{_prefix}/lib/
 %endif
 
 %files

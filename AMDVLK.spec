@@ -83,6 +83,7 @@ BuildRequires: curl
 BuildRequires: glibc-devel
 BuildRequires: dxc
 BuildRequires: dxc-libdxcompiler-devel
+BuildRequires: glslang
 BuildRequires: libstdc++-devel
 BuildRequires: pkgconfig(xau)
 BuildRequires: pkgconfig(xcb)

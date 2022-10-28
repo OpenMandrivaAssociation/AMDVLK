@@ -12,11 +12,12 @@
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
 %global amdvlk_commit		cab8f8631d99240a6503872083bd544fe85f628f
-%global llvm_commit		dc78f4c4b2455e6a29a2e19d80034654fb0d455d
-%global llpc_commit		716cd8e5d6934bde88c086645551a2d064289894
-%global xgl_commit		43fc25d001917232d01995bb99f1a29be905545f
-%global pal_commit		f80b95b308a42eb8f54d22b14961f3ea53674584
-%global spvgen_commit		3b61d0ce836d3832e19931be198f6f619206de4c
+%global gpurt_commit		2874e509b677d78ddb3faae90989dd45e60669b3
+%global llvm_commit		d2b67605e4dd5dc50d0afbeb4f20f29cce97b207
+%global llpc_commit		9db0ba4c968bbfe2f3e7e546d17cbfd07dcfdc9e
+%global xgl_commit		8a67c76eedb8400fb5d3b1e7b6a3894efdc7a3b9
+%global pal_commit		c2af6fc4c14ea61273bcf5576f8a83a12b945dd7
+%global spvgen_commit		92d66501dcc4d7f7ea12a85069d5cdcd5cb59a95
 %global metrohash_commit	18893fb28601bb9af1154cd1a671a121fff6d8d3
 %global cwpack_commit		4f8cf0584442a91d829d269158567d7ed926f026
 
@@ -26,6 +27,7 @@
 %global spirv_cross_commit	44691aa9754d9db9f8c0828e5ca6d2909c671200
 
 %global amdvlk_short_commit	%(c=%{amdvlk_commit}; echo ${c:0:7})
+%global gpurt_short_commit	%(c=%{gpurt_commit}; echo ${c:0:7})
 %global llvm_short_commit	%(c=%{llvm_commit}; echo ${c:0:7})
 %global llpc_short_commit	%(c=%{llpc_commit}; echo ${c:0:7})
 %global xgl_short_commit	%(c=%{xgl_commit}; echo ${c:0:7})
@@ -48,7 +50,7 @@
 %endif
 
 Name:		amdvlk-vulkan-driver
-Version:	2022.Q3.3
+Version:	2022.Q4.1
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
@@ -65,6 +67,7 @@ Source8:	%khronos_url/glslang/archive/%{glslang_commit}/glslang-%{glslang_commit
 Source9:	%khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}/SPIRV-Tools-%{spirv_tools_commit}.tar.gz
 Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
 Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
+Source12:	%url/gpurt/archive/%{gpurt_commit}/gpurt-%{gpurt_commit}.tar.gz
 
 Patch0:		amdvlk-fix-missing-include.patch
 
@@ -121,13 +124,14 @@ following AMD GPUs:
 	Radeon Pro W5700/W5500 Series
 
 %prep
-%setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7 -a 8 -a 9 -a 10 -a 11
+%setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7 -a 8 -a 9 -a 10 -a 11 a- 12
 ln -s AMDVLK-%{amdvlk_version} AMDVLK
 ln -s llvm-project-%{llvm_commit} llvm-project
 ln -s llpc-%{llpc_commit} llpc
 ln -s xgl-%{xgl_commit} xgl
 ln -s pal-%{pal_commit} pal
 ln -s spvgen-%{spvgen_commit} spvgen
+ln -s gpurt-%{gpurt_commit} gpurt
 mkdir third_party
 ln -s ../MetroHash-%{metrohash_commit} third_party/metrohash
 ln -s ../CWPack-%{cwpack_commit} third_party/cwpack

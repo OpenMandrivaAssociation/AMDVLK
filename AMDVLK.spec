@@ -69,8 +69,6 @@ Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Heade
 Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
 Source12:	%url/gpurt/archive/%{gpurt_commit}/gpurt-%{gpurt_commit}.tar.gz
 
-Patch0:		amdvlk-fix-missing-include.patch
-
 Provides:	amdvlk
 Requires:	vulkan-loader
 Requires:	%{_lib}vulkan1
@@ -83,6 +81,7 @@ BuildRequires: python
 BuildRequires: perl
 BuildRequires: curl
 BuildRequires: glibc-devel
+BuildRequires: dxc-libdxcompiler-devel
 BuildRequires: libstdc++-devel
 BuildRequires: pkgconfig(xau)
 BuildRequires: pkgconfig(xcb)

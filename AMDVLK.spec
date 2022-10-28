@@ -81,6 +81,7 @@ BuildRequires: python
 BuildRequires: perl
 BuildRequires: curl
 BuildRequires: glibc-devel
+BuildRequires: dxc
 BuildRequires: dxc-libdxcompiler-devel
 BuildRequires: libstdc++-devel
 BuildRequires: pkgconfig(xau)

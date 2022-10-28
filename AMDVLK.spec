@@ -21,7 +21,7 @@
 %global metrohash_commit	18893fb28601bb9af1154cd1a671a121fff6d8d3
 %global cwpack_commit		4f8cf0584442a91d829d269158567d7ed926f026
 
-%global glslang_commit		6d937739953b871453dbca46d91268901ac51b85
+%global glslang_commit		980ac50813fb567b6af6b89282eae850b328c967
 %global spirv_tools_commit	b3c1790632737f6be2c0e1c2ea5bd844da9f17a9
 %global spirv_headers_commit	4995a2f2723c401eb0ea3e10c81298906bf1422b
 %global spirv_cross_commit	44691aa9754d9db9f8c0828e5ca6d2909c671200

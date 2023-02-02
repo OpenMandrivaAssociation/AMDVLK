@@ -13,7 +13,7 @@
 
 %global amdvlk_commit		cab8f8631d99240a6503872083bd544fe85f628f
 %global gpurt_commit		e19c8ceca056f0b0d24ca4ecd654ef21d40ea063
-%global llvm-dialects_commit	5253cbd2118a0027ed534f55b91b6b7fc9bbdacb
+%global llvm_dialects_commit	5253cbd2118a0027ed534f55b91b6b7fc9bbdacb
 %global llvm_commit		916f05c15939f5c94a3ec95d5b1fd6dbaf6c1ee4
 %global llpc_commit		ffc49b2a07dea2754c1f7f3457a4ab5b4129c422
 %global xgl_commit		69bb5f276d4b70e21b9b9941926b2576d4212ce7
@@ -29,7 +29,7 @@
 
 %global amdvlk_short_commit	%(c=%{amdvlk_commit}; echo ${c:0:7})
 %global gpurt_short_commit	%(c=%{gpurt_commit}; echo ${c:0:7})
-%global llvm-dialects_short_commit	%(c=%{llvm-dialects_commit}; echo ${c:0:7})
+%global llvm_dialects_short_commit	%(c=%{llvm_dialects_commit}; echo ${c:0:7})
 %global llvm_short_commit	%(c=%{llvm_commit}; echo ${c:0:7})
 %global llpc_short_commit	%(c=%{llpc_commit}; echo ${c:0:7})
 %global xgl_short_commit	%(c=%{xgl_commit}; echo ${c:0:7})
@@ -70,7 +70,7 @@ Source9:	%khronos_url/SPIRV-Tools/archive/%{spirv_tools_commit}/SPIRV-Tools-%{sp
 Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Headers-%{spirv_headers_commit}.tar.gz
 Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
 Source12:	%url/gpurt/archive/%{gpurt_commit}/gpurt-%{gpurt_commit}.tar.gz
-Source14:	%url/llvm-dialects/archive/%{llvm-dialects_commit}/llvm-dialects-%{llvm-dialects_commit}.tar.gz
+Source14:	%url/llvm-dialects/archive/%{llvm_dialects_commit}/llvm-dialects-%{llvm_dialects_commit}.tar.gz
 
 Provides:	amdvlk
 Requires:	vulkan-loader
@@ -136,7 +136,7 @@ ln -s xgl-%{xgl_commit} xgl
 ln -s pal-%{pal_commit} pal
 ln -s spvgen-%{spvgen_commit} spvgen
 ln -s gpurt-%{gpurt_commit} gpurt
-ln -s llvm-dialects-%{llvm-dialects_commit} llvm-dialects
+ln -s llvm-dialects-%{llvm_dialects_commit} llvm-dialects
 mkdir third_party
 ln -s ../MetroHash-%{metrohash_commit} third_party/metrohash
 ln -s ../CWPack-%{cwpack_commit} third_party/cwpack

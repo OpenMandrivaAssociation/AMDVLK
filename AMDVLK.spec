@@ -128,7 +128,7 @@ following AMD GPUs:
 	Radeon Pro W5700/W5500 Series
 
 %prep
-%setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7 -a 8 -a 9 -a 10 -a 11 -a 12
+%setup -q -c -n %{name}-%{version} -a 0 -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7 -a 8 -a 9 -a 10 -a 11 -a 12 -a 14
 ln -s AMDVLK-%{amdvlk_version} AMDVLK
 ln -s llvm-project-%{llvm_commit} llvm-project
 ln -s llpc-%{llpc_commit} llpc

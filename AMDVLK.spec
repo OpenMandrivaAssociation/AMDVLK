@@ -138,6 +138,9 @@ ln -s spvgen-%{spvgen_commit} spvgen
 ln -s gpurt-%{gpurt_commit} gpurt
 ln -s llvm-dialects-%{llvm_dialects_commit} llvm-dialects
 mv llvm-dialects llvm-project/llvm/tools/
+pushd llpc/imported/
+rm -rf llvm-dialects
+popd
 mkdir third_party
 ln -s ../MetroHash-%{metrohash_commit} third_party/metrohash
 ln -s ../CWPack-%{cwpack_commit} third_party/cwpack

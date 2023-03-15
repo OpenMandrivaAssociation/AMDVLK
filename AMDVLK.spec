@@ -1,5 +1,4 @@
-#global debug_package %{nil}
-%define _empty_manifest_terminate_build 0
+%undefine _debugsource_packages
 
 # Workaround for the build process eating way too much RAM
 %define _disable_lto 1
@@ -13,19 +12,19 @@
 
 %global amdvlk_commit		cab8f8631d99240a6503872083bd544fe85f628f
 %global gpurt_commit		714a028e920c502520011fc4f4556f58ec897424
-%global llvm_dialects_commit	da31a168bc4049007a98781da1ce963215b43fc1
+%global llvm_dialects_commit	42a0911ac77f61a1970612957694d19b2e539137
 %global llvm_commit		fdc6165b081b7b5e5ba245f4283fcb23d6d9f167
 %global llpc_commit		1ecd9997579b962be571162931c9e38bd86bafad
-%global xgl_commit		fff90e62ef89d64182ecff93c16db7de37c529f2
+%global xgl_commit		997225355d7fce7392a9e32fe9f0a515f5736d0f
 %global pal_commit		4640888b579bc9b0951c586b08a4552f71780d0d
-%global spvgen_commit		63c50fc8103ff847da7874d12a6e81387acf24f5
+%global spvgen_commit		11eaa355cb3ba2838b818430130320e7f7651608
 %global metrohash_commit	18893fb28601bb9af1154cd1a671a121fff6d8d3
 %global cwpack_commit		4f8cf0584442a91d829d269158567d7ed926f026
 
 %global glslang_commit		980ac50813fb567b6af6b89282eae850b328c967
-%global spirv_tools_commit	b3c1790632737f6be2c0e1c2ea5bd844da9f17a9
-%global spirv_headers_commit	4995a2f2723c401eb0ea3e10c81298906bf1422b
-%global spirv_cross_commit	44691aa9754d9db9f8c0828e5ca6d2909c671200
+%global spirv_tools_commit	eb113f0fdfff8efc114953bdabf1738db681ad8d
+%global spirv_headers_commit	85a1ed200d50660786c1a88d9166e871123cce39
+%global spirv_cross_commit	57639196694a8b5c572c9358f5d9cb443dd341e5
 
 %global amdvlk_short_commit	%(c=%{amdvlk_commit}; echo ${c:0:7})
 %global gpurt_short_commit	%(c=%{gpurt_commit}; echo ${c:0:7})
@@ -52,7 +51,7 @@
 %endif
 
 Name:		amdvlk-vulkan-driver
-Version:	2023.Q1.2
+Version:	2023.Q1.3
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
@@ -137,6 +136,8 @@ ln -s pal-%{pal_commit} pal
 ln -s spvgen-%{spvgen_commit} spvgen
 ln -s gpurt-%{gpurt_commit} gpurt
 ln -s llvm-dialects-%{llvm_dialects_commit} llvm-dialects
+rmdir llpc/imported/llvm-dialects
+ln -s $(pwd)/llvm-dialects llpc/imported/
 mkdir third_party
 ln -s ../MetroHash-%{metrohash_commit} third_party/metrohash
 ln -s ../CWPack-%{cwpack_commit} third_party/cwpack
@@ -174,6 +175,10 @@ export CXXFLAGS="%{optflags} -fno-lto -m32 -DNDEBUG"
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
 	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
+	-DCMAKE_C_FLAGS_RELWITHDEBINFO="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
+	-DCMAKE_CXX_FLAGS_RELWITHDEBINFO="%{optflags} -O3 -fno-lto -m32 -DNDEBUG" \
+	-DCMAKE_EXE_LINKER_FLAGS_INIT="%{optflags} -Wl,--build-id=sha1" \
+	-DCMAKE_SHARED_LINKER_FLAGS_INIT="%{optflags} -Wl,--build-id=sha1" \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DBUILD_SHARED_LIBS=OFF \
@@ -200,9 +205,13 @@ cmake .. \
 	-DCMAKE_C_FLAGS_RELEASE="-O2 -DNDEBUG" \
 	-DCMAKE_CXX_FLAGS_RELEASE="-O2 -DNDEBUG" \
 %else
-	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -O3 -DNDEBUG" \
-	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -O3 -DNDEBUG" \
+	-DCMAKE_C_FLAGS_RELEASE="%{optflags} -flto=thin -O3 -DNDEBUG" \
+	-DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -flto=thin -O3 -DNDEBUG" \
+	-DCMAKE_C_FLAGS_RELWITHDEBINFO="%{optflags} -flto=thin -O3 -DNDEBUG" \
+	-DCMAKE_CXX_FLAGS_RELWITHDEBINFO="%{optflags} -flto=thin -O3 -DNDEBUG" \
 %endif
+	-DCMAKE_EXE_LINKER_FLAGS_INIT="%{optflags} -Wl,--build-id=sha1" \
+	-DCMAKE_SHARED_LINKER_FLAGS_INIT="%{optflags} -Wl,--build-id=sha1" \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DBUILD_SHARED_LIBS=OFF \
@@ -241,6 +250,9 @@ echo "MaxNumCmdStreamsPerSubmit,4" > %{buildroot}%{_sysconfdir}/amd/amdPalSettin
 	install -m 755 xgl/build32/icd/amdvlk32.so %{buildroot}%{_prefix}/lib/
 #	install -m 755 xgl/build32/spvgen/spvgen.so %{buildroot}%{_prefix}/lib/
 %endif
+
+# Workaround for lld generating an 8-byte build-id that breaks debugedit
+find %{buildroot} -name "*.so" |xargs strip -R .comment --strip-unneeded 
 
 %files
 %doc AMDVLK/LICENSE.txt AMDVLK/README.md AMDVLK/topLevelArch.png

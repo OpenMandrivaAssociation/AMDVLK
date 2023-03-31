@@ -52,7 +52,7 @@
 
 Name:		amdvlk-vulkan-driver
 Version:	2023.Q1.3
-Release:	1
+Release:	2
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
 Url:		https://github.com/GPUOpen-Drivers

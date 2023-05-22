@@ -71,6 +71,8 @@ Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{s
 Source12:	%url/gpurt/archive/%{gpurt_commit}/gpurt-%{gpurt_commit}.tar.gz
 Source14:	%url/llvm-dialects/archive/%{llvm_dialects_commit}/llvm-dialects-%{llvm_dialects_commit}.tar.gz
 
+Patch0:		add-missing-include.patch
+
 Provides:	amdvlk
 Requires:	vulkan-loader
 Requires:	%{_lib}vulkan1

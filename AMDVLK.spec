@@ -11,12 +11,12 @@
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
 %global amdvlk_commit		cab8f8631d99240a6503872083bd544fe85f628f
-%global gpurt_commit		714a028e920c502520011fc4f4556f58ec897424
+%global gpurt_commit		a1220a7d201de046540ee46139fa05ba788eddd8
 %global llvm_dialects_commit	42a0911ac77f61a1970612957694d19b2e539137
-%global llvm_commit		fdc6165b081b7b5e5ba245f4283fcb23d6d9f167
-%global llpc_commit		1ecd9997579b962be571162931c9e38bd86bafad
-%global xgl_commit		997225355d7fce7392a9e32fe9f0a515f5736d0f
-%global pal_commit		4640888b579bc9b0951c586b08a4552f71780d0d
+%global llvm_commit		9b82edca7fa326894f42ba6a0e1b22569dcd5517
+%global llpc_commit		298e95edad06019e0266c492996f086e78896009
+%global xgl_commit		02e867e81626b9566c5cc24f134ec0760e93a94a
+%global pal_commit		954ff050fe7e3842947a0d00d619c0f3ba5e9cbd
 %global spvgen_commit		11eaa355cb3ba2838b818430130320e7f7651608
 %global metrohash_commit	18893fb28601bb9af1154cd1a671a121fff6d8d3
 %global cwpack_commit		4f8cf0584442a91d829d269158567d7ed926f026
@@ -51,8 +51,8 @@
 %endif
 
 Name:		amdvlk-vulkan-driver
-Version:	2023.Q1.3
-Release:	2
+Version:	2023.Q2.2
+Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
 Url:		https://github.com/GPUOpen-Drivers

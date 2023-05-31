@@ -12,7 +12,7 @@
 
 %global amdvlk_commit		cab8f8631d99240a6503872083bd544fe85f628f
 %global gpurt_commit		a1220a7d201de046540ee46139fa05ba788eddd8
-%global llvm_dialects_commit	42a0911ac77f61a1970612957694d19b2e539137
+%global llvm_dialects_commit	b716b5679d2d7c24e2d10ffac339a6672ebf25bf
 %global llvm_commit		9b82edca7fa326894f42ba6a0e1b22569dcd5517
 %global llpc_commit		298e95edad06019e0266c492996f086e78896009
 %global xgl_commit		02e867e81626b9566c5cc24f134ec0760e93a94a

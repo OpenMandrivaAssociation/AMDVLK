@@ -11,20 +11,20 @@
 # https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
 
 %global amdvlk_commit		cab8f8631d99240a6503872083bd544fe85f628f
-%global gpurt_commit		a0415aa237c8f196dffcc04ef3557c485e8a591b
-%global llvm_dialects_commit	4d8170d8c3f59b35b68ac80bd36e9ca0ce7912a3
-%global llvm_commit		b2b27cdd9f04926dda7b9c7b55f07d842767567f
-%global llpc_commit		ce2c12c412bd6215a16dd862ccc1eeffbac61114
-%global xgl_commit		bc0587c273e593cecdbd7ca45bbcd7e894b96a69
-%global pal_commit		9a07f5b7883ea0f1c94b330f4960d33c68016c32
-%global spvgen_commit		fd49f1d477a203379f6557e9c74edfadc10b7672
+%global gpurt_commit		c8d11d35803afa3f5c98763ac166a38359f1ab4d
+%global llvm_dialects_commit	8c54ca076fbf841dc5d22da8b6a1d434a01b153c
+%global llvm_commit		87431a3c072da57d31a53d62e17020d1a7888191
+%global llpc_commit		72a5200f2e184f83015722a46495eb1b88c38896
+%global xgl_commit		99fce34f26d9fc9833afcdb58cef409d4b3bb239
+%global pal_commit		2abc775b8eb03b841ec76a40fd3666cbab308267
+%global spvgen_commit		330ae5a426696faf144309652ca71586f55fc25a
 %global metrohash_commit	18893fb28601bb9af1154cd1a671a121fff6d8d3
 %global cwpack_commit		4f8cf0584442a91d829d269158567d7ed926f026
 
-%global glslang_commit		d9c3c7538b2449e39cfb0d793702d218ed58ff03
-%global spirv_tools_commit	51892874ba08f3ac0d9b1fcf3893c8516693a88e
-%global spirv_headers_commit	268a061764ee69f09a477a695bf6a11ffe311b8d
-%global spirv_cross_commit	54b48a2f3afd9bbaaddc9f876f85a0fbfad9c7fa
+%global glslang_commit		396596ca4a5fa12872783505568aac9c6bdd9d1d
+%global spirv_tools_commit	e68fe9be4e6ca63097ac4305d7552ad29afd5004
+%global spirv_headers_commit	ae89923fa781650569ca15e5b498a9e4e46ee9c9
+%global spirv_cross_commit	bccaa94db814af33d8ef05c153e7c34d8bd4d685
 
 %global amdvlk_short_commit	%(c=%{amdvlk_commit}; echo ${c:0:7})
 %global gpurt_short_commit	%(c=%{gpurt_commit}; echo ${c:0:7})
@@ -51,7 +51,7 @@
 %endif
 
 Name:		amdvlk-vulkan-driver
-Version:	2023.Q3.1
+Version:	2023.Q3.2
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT

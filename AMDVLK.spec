@@ -6,27 +6,28 @@
 %global amdvlk_version	  v-%{version}
 %global amdvlk_core_version	  2.192
 
-# Keep in basic sync with:
-# https://github.com/tomkv/packaging-rpm/blob/master/amdvlk/amdvlk.spec
-# https://copr.fedorainfracloud.org/coprs/tkov/amdvlk/package/amdvlk-vulkan-driver/
+# Commit IDs from
+# https://github.com/GPUOpen-Drivers/AMDVLK/blob/v-%{version}/build_with_tools.xml
+%global spvgen_commit		ba3bda984defc22aadb20f3e1fdfaf23972cf636
+%global glslang_commit		1b65bd602b23d401d1c4c86dfa90a36a52c66294
+%global spirv_tools_commit	ce37fd67f83cd1e8793b988d2e4126bbf72b19dd
+%global spirv_headers_commit	e7294a8ebed84f8c5bd3686c68dbe12a4e65b644
+%global spirv_cross_commit	6173e24b31f09a0c3217103a130e74c4ddec14a6
 
-%global amdvlk_commit		cab8f8631d99240a6503872083bd544fe85f628f
-%global gpurt_commit		7a3d1d10f98a4bc0fdb5ea3f75a7549da44dcdfb
-%global llvm_dialects_commit	8c54ca076fbf841dc5d22da8b6a1d434a01b153c
-%global llvm_commit		92bd7b3505d4c3d93bd1dd0cadea70ac8bfe533f
-%global llpc_commit		e9a3361712946970f70f592a237ad29a4c553509
-%global xgl_commit		5f4c7d9498c652d1e6b99012c7e83b99ea8da488
-%global pal_commit		2de164b431f8a27652e63513ae73338dc512e5bf
-%global spvgen_commit		707a496e090fc730bb54934a2c0a654ffed1b69e
+# Commit IDs from
+# https://github.com/GPUOpen-Drivers/AMDVLK/blob/v-%{version}/default.xml
+%global xgl_commit		ba24064a9c93e76d0cafb0196996e779fbe70bf4
+%global pal_commit		04bc1e796dd15fc90fff8fa826d32e431d8722f6
+%global llpc_commit		188bbf6a5b9403813e51d39f6fc8429550dbf267
+%global gpurt_commit		f734985ebc31f471c376ed0cb217f43bdd40ee17
+%global llvm_commit		cf4271cbb7c60a6517c45e9fc9fa09a9f420f512
 %global metrohash_commit	18893fb28601bb9af1154cd1a671a121fff6d8d3
 %global cwpack_commit		4f8cf0584442a91d829d269158567d7ed926f026
 
-%global glslang_commit		396596ca4a5fa12872783505568aac9c6bdd9d1d
-%global spirv_tools_commit	e68fe9be4e6ca63097ac4305d7552ad29afd5004
-%global spirv_headers_commit	ae89923fa781650569ca15e5b498a9e4e46ee9c9
-%global spirv_cross_commit	bccaa94db814af33d8ef05c153e7c34d8bd4d685
+# Commit ID from
+# https://github.com/GPUOpen-Drivers/llpc/tree/%{llpc_commit}/imported
+%global llvm_dialects_commit	50260f8bdd9ce47b388f5009546a438aba8b9d16
 
-%global amdvlk_short_commit	%(c=%{amdvlk_commit}; echo ${c:0:7})
 %global gpurt_short_commit	%(c=%{gpurt_commit}; echo ${c:0:7})
 %global llvm_dialects_short_commit	%(c=%{llvm_dialects_commit}; echo ${c:0:7})
 %global llvm_short_commit	%(c=%{llvm_commit}; echo ${c:0:7})
@@ -40,8 +41,6 @@
 %global spirv_tools_short_commit	%(c=%{spirv_tools_commit}; echo ${c:0:7})
 %global spirv_headers_short_commit	%(c=%{spirv_headers_commit}; echo ${c:0:7})
 %global spirv_cross_short_commit	%(c=%{spirv_cross_commit}; echo ${c:0:7})
-%global commit_date		20211227
-%global gitrel			.%{commit_date}.git%{amdvlk_short_commit}
 %global khronos_url		https://github.com/KhronosGroup/
 
 %ifarch %{x86_64}
@@ -51,7 +50,7 @@
 %endif
 
 Name:		amdvlk-vulkan-driver
-Version:	2023.Q3.3
+Version:	2025.Q1.3
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
@@ -85,8 +84,8 @@ BuildRequires: python
 BuildRequires: perl
 BuildRequires: curl
 BuildRequires: glibc-devel
-BuildRequires: dxc
-BuildRequires: dxc-libdxcompiler-devel
+BuildRequires: dxc >= 1.8
+BuildRequires: dxc-libdxcompiler-devel >= 1.8
 BuildRequires: glslang
 BuildRequires: libstdc++-devel
 BuildRequires: pkgconfig(xau)
@@ -99,6 +98,8 @@ BuildRequires: wayland-devel
 BuildRequires: pkgconfig(zlib)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(libdrm)
+BuildRequires: python
+BuildRequires: python%{pyver}dist(ruamel.yaml)
 %if %{with compat32}
 BuildRequires: libc6
 BuildRequires: devel(libXau)

@@ -100,6 +100,7 @@ BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: python%{pyver}dist(ruamel.yaml)
 BuildRequires: python%{pyver}dist(jinja2)
+BuildRequires: stdc++-static-devel
 %if %{with compat32}
 BuildRequires: libc6
 BuildRequires: devel(libXau)

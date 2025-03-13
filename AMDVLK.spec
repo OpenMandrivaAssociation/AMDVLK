@@ -98,8 +98,8 @@ BuildRequires: wayland-devel
 BuildRequires: pkgconfig(zlib)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(libdrm)
-BuildRequires: python
 BuildRequires: python%{pyver}dist(ruamel.yaml)
+BuildRequires: python%{pyver}dist(jinja2)
 %if %{with compat32}
 BuildRequires: libc6
 BuildRequires: devel(libXau)

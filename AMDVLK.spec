@@ -16,17 +16,17 @@
 
 # Commit IDs from
 # https://github.com/GPUOpen-Drivers/AMDVLK/blob/v-%{version}/default.xml
-%global xgl_commit		ba24064a9c93e76d0cafb0196996e779fbe70bf4
-%global pal_commit		04bc1e796dd15fc90fff8fa826d32e431d8722f6
-%global llpc_commit		188bbf6a5b9403813e51d39f6fc8429550dbf267
-%global gpurt_commit		f734985ebc31f471c376ed0cb217f43bdd40ee17
-%global llvm_commit		cf4271cbb7c60a6517c45e9fc9fa09a9f420f512
-%global metrohash_commit	18893fb28601bb9af1154cd1a671a121fff6d8d3
-%global cwpack_commit		4f8cf0584442a91d829d269158567d7ed926f026
+%global xgl_commit		e9782eb33ce5e5e4ed2e339542a28c1b933624b4
+%global pal_commit		c5e800072a32f68b6ccc4422936d96167c6e0728
+%global llpc_commit		40cb8d95ad8d6f7f1652e3fd47d39667594cce08
+%global gpurt_commit		7b226d48b46b7e92fec3b9ecc5712e5bf2bf3dd9
+%global llvm_commit		8fd93e26cf9b1235fc9573b68b96233818be0ed4
+%global metrohash_commit	6ab6ee5d31d001ba73feb5e7f13dbc75da96b620
+%global cwpack_commit		73d612971b3a73341f241b021e5cbda220eef7f2
 
 # Commit ID from
 # https://github.com/GPUOpen-Drivers/llpc/tree/%{llpc_commit}/imported
-%global llvm_dialects_commit	50260f8bdd9ce47b388f5009546a438aba8b9d16
+%global llvm_dialects_commit	b249d1d3285696bd2a6a5729f5dfb7f69150047e
 
 %global gpurt_short_commit	%(c=%{gpurt_commit}; echo ${c:0:7})
 %global llvm_dialects_short_commit	%(c=%{llvm_dialects_commit}; echo ${c:0:7})
@@ -43,6 +43,8 @@
 %global spirv_cross_short_commit	%(c=%{spirv_cross_commit}; echo ${c:0:7})
 %global khronos_url		https://github.com/KhronosGroup/
 
+# 32-bit bits are currently disabled because we'd need a 32-bit
+# libdxcompiler first
 %ifarch %{x86_64}
 %bcond_without compat32
 %else
@@ -50,7 +52,7 @@
 %endif
 
 Name:		amdvlk-vulkan-driver
-Version:	2025.Q1.3
+Version:	2025.Q2.1
 Release:	1
 Summary:	AMD Open Source Driver For Vulkan
 License:	MIT
@@ -69,8 +71,6 @@ Source10:	%khronos_url/SPIRV-Headers/archive/%{spirv_headers_commit}/SPIRV-Heade
 Source11:	%khronos_url/SPIRV-Cross/archive/%{spirv_cross_commit}/SPIRV-Cross-%{spirv_cross_commit}.tar.gz
 Source12:	%url/gpurt/archive/%{gpurt_commit}/gpurt-%{gpurt_commit}.tar.gz
 Source14:	%url/llvm-dialects/archive/%{llvm_dialects_commit}/llvm-dialects-%{llvm_dialects_commit}.tar.gz
-
-#Patch0:		add-missing-include.patch
 
 Provides:	amdvlk
 Requires:	vulkan-loader
@@ -118,6 +118,9 @@ BuildRequires: devel(libffi)
 BuildRequires: devel(libdrm)
 %endif
 
+%patchlist
+amdvlk-rapidjson-fix-broken-header.patch
+
 %description
 The AMD Open Source Driver for Vulkan is an open-source Vulkan driver
 for Radeon graphics adapters on Linux. It is designed to support the
@@ -163,6 +166,18 @@ ln -s ../../SPIRV-Cross-%{spirv_cross_commit} spvgen/external/SPIRV-cross
 %autopatch -p1
 
 %build
+# The build system wants to use spirv-remap, but it doesn't exist anymore in current upstream glslang
+# So let's build the internal glslang (which exists anyway) first to get it...
+cd glslang-*
+%cmake \
+	-DALLOW_EXTERNAL_SPIRV_TOOLS:BOOL=ON \
+	-G Ninja
+%ninja_build
+cd ../..
+
+export LD_LIBRARY_PATH=$(pwd)/glslang-%{glslang_commit}/build/SPIRV:$LD_LIBRARY_PATH
+export PATH=$(pwd)/glslang-%{glslang_commit}/build/StandAlone:$PATH
+
 %if %{with compat32}
 # Make sure we don't get --color-diagnostics on ld.bfd -- the checks
 # seem to use ld.lld...

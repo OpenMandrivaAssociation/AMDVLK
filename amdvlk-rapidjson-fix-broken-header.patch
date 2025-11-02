@@ -1,0 +1,13 @@
+diff -up amdvlk-vulkan-driver-2025.Q2.1/pal-c5e800072a32f68b6ccc4422936d96167c6e0728/shared/devdriver/apis/settings/src/dd_settings_utils.cpp.omv~ amdvlk-vulkan-driver-2025.Q2.1/pal-c5e800072a32f68b6ccc4422936d96167c6e0728/shared/devdriver/apis/settings/src/dd_settings_utils.cpp
+diff -up amdvlk-vulkan-driver-2025.Q2.1/pal-c5e800072a32f68b6ccc4422936d96167c6e0728/shared/devdriver/third_party/rapidjson/include/rapidjson/document.h.omv~ amdvlk-vulkan-driver-2025.Q2.1/pal-c5e800072a32f68b6ccc4422936d96167c6e0728/shared/devdriver/third_party/rapidjson/include/rapidjson/document.h
+--- amdvlk-vulkan-driver-2025.Q2.1/pal-c5e800072a32f68b6ccc4422936d96167c6e0728/shared/devdriver/third_party/rapidjson/include/rapidjson/document.h.omv~	2025-11-02 19:07:07.765147066 +0100
++++ amdvlk-vulkan-driver-2025.Q2.1/pal-c5e800072a32f68b6ccc4422936d96167c6e0728/shared/devdriver/third_party/rapidjson/include/rapidjson/document.h	2025-11-02 19:07:12.503674185 +0100
+@@ -316,8 +316,6 @@ struct GenericStringRef {
+ 
+     GenericStringRef(const GenericStringRef& rhs) : s(rhs.s), length(rhs.length) {}
+ 
+-    GenericStringRef& operator=(const GenericStringRef& rhs) { s = rhs.s; length = rhs.length; }
+-
+     //! implicit conversion to plain CharType pointer
+     operator const Ch *() const { return s; }
+ 

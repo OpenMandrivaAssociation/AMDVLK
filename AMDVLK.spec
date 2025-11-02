@@ -117,6 +117,7 @@ BuildRequires: devel(libz)
 BuildRequires: devel(libssl)
 BuildRequires: devel(libffi)
 BuildRequires: devel(libdrm)
+BuildRequires: libdxcompiler.so
 %endif
 
 %patchlist

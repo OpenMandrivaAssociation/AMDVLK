@@ -93,6 +93,7 @@ BuildRequires: pkgconfig(xcb)
 BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xshmfence)
 BuildRequires: pkgconfig(xrandr)
+BuildRequires: cmake(SPIRV-Tools-opt)
 BuildRequires: gtest-devel
 BuildRequires: wayland-devel
 BuildRequires: pkgconfig(zlib)
